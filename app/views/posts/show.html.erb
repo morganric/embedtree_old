@@ -1,0 +1,42 @@
+
+
+<article class="row">
+  <section class="span9">
+
+    <h1><%= link_to @post.title, @post.url  %></h1>
+    
+    <% if @post.embed_code %>
+      <%= @post.embed_code.html_safe %>
+    <% else %>
+      <p class=" alertalert-warning">Sorry, there is no embed code.</p> 
+    <% end %>
+
+    <% if @post.description != "" %>
+      <p class="well">
+        <%= @post.description %>
+      </p>
+    <% else %>
+    <% end %>
+
+  </section>
+  <side class="span3">
+    <%= image_tag @post.image, :class => "thumbnail" %>
+    <section>
+        <h4>Posted By</h4>
+        <ul>
+        <% @post.users.each do |user| %>
+          <li><%= link_to user.name, user_path(user) %></li>
+        <% end %>
+      </ul>
+    </section>
+  </side>
+
+
+
+</article>
+
+
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

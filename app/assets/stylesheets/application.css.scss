@@ -8,18 +8,57 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+ *= require 'masonry/basic'
+	*= require 'masonry/centered'
+	*= require 'masonry/fluid'
+	*= require 'masonry/gutters'
+	*= require 'masonry/infinitescroll'
+	*= require 'masonry/right-to-left'
+	*= require 'masonry/transitions'
 */
 
+// Example using 'Cerulean' bootswatch
+//
+// First import Cerulean variables
+@import "bootswatch/flatly/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
+
+// Responsive styles go here in case you want them
+@import "bootstrap-responsive";
+
+// And finally bootswatch style itself
+@import "bootswatch/flatly/bootswatch";
+
+// Whatever application styles you have go last
+/* @import "base"; */
+
+div.box {
+	background: white !important;
+}
+
+
+ul {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+ul li {
+	list-style:none;
+}
+
 .content {
-  background-color: #eee;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px 6px;
+  border-radius: 6px 6px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  border: 1px solid rgba(0,0,0,.15);
 }

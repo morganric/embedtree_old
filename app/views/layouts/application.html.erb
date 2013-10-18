@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Embedtree" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Embedtree" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "EmbedTree" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EmbedTree" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -26,10 +26,14 @@
               <%= yield %>
             </div>
           </div>
-          <footer>
-          </footer>
+
         </div>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
+    <footer>
+            <section class="text-center">
+              <p>EmbedTree &copy;</p>
+            </section>
+    </footer>
   </body>
 </html>

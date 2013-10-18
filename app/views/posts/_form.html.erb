@@ -1,0 +1,15 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, as: :hidden %>
+    <%= f.input :url %>
+    <%= f.input :embed_code, as: :hidden %>
+    <%= f.input :image, as: :hidden %>
+    <%= f.input :description, as: :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
