@@ -18,4 +18,4 @@ puts 'user: ' << user.name
 user.add_role :admin
 user.save
 
-pusts 'hooorah'
+puts 'hooorah'
