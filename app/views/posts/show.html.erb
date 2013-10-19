@@ -1,15 +1,28 @@
 
 
 <article class="row">
-  <section class="span9">
 
-    <h1><%= link_to @post.title, @post.url  %></h1>
-    
-    <% if @post.embed_code %>
-      <%= @post.embed_code.html_safe %>
-    <% else %>
-      <p class=" alertalert-warning">Sorry, there is no embed code.</p> 
-    <% end %>
+   <section class="span10">
+      <h1>
+          <% if @post.title != "" %>
+            <%= link_to @post.title, @post.url, :target => "_blank"  %>
+          <% else %>
+            <%= link_to truncate(@post.url, :length => 25), @post.url, :target => "_blank"  %>
+          <% end %>
+      </h1>
+      <hr/>
+    </section>
+
+  <section class="span8">
+  
+  <div id="" class="flex-video widescreen">
+        <% if @post.embed_code %>
+          <%= @post.embed_code.html_safe %>
+        <% else %>
+          <p class=" alert alert-warning" >Sorry, there is no embed code.</p> 
+        <% end %>
+  </div>
+
 
     <% if @post.description != "" %>
       <p class="well">
@@ -19,15 +32,28 @@
     <% end %>
 
   </section>
-  <side class="span3">
-    <%= image_tag @post.image, :class => "thumbnail" %>
+  <side class="span2">
+    <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
+
+    <% if @post.provider %>
+    <span>on <%= link_to @post.provider.name, provider_path(@post.provider) %></span>
+    <% end %>
+
+    <% if @post.author %>
+    <span> by <%= link_to @post.author.name, author_path(@post.author) %></span>
+    <% end %>
+    <br/>
+
+    <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
+    <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
+
     <section>
-        <h4>Posted By</h4>
+        <p>via</p>
         <ul>
-        <% @post.users.each do |user| %>
-          <li><%= link_to user.name, user_path(user) %></li>
-        <% end %>
-      </ul>
+          <% @post.users.each do |user| %>
+            <li><%= link_to user.name, vanity_url_path(user.profile) %></li>
+          <% end %>
+        </ul>
     </section>
   </side>
 

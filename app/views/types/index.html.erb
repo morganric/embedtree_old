@@ -1,0 +1,7 @@
+<h1>Post Types</h1>
+
+<ul>
+<% @types.each do |type| %>
+	<li><h2><%= link_to type.name.capitalize.pluralize, type_path(type) %></h2></li>
+<% end %>
+</ul>

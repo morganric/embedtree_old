@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131018155518) do
+ActiveRecord::Schema.define(:version => 20131019154612) do
+
+  create_table "author_posts", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "authors", ["slug"], :name => "index_authors_on_slug", :unique => true
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -21,7 +49,41 @@ ActiveRecord::Schema.define(:version => 20131018155518) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
+
+  add_index "posts", ["slug"], :name => "index_posts_on_slug", :unique => true
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "display_name"
+    t.string   "image"
+    t.string   "banner"
+    t.text     "bio"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "slug"
+  end
+
+  add_index "profiles", ["slug"], :name => "index_profiles_on_slug", :unique => true
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id", :unique => true
+
+  create_table "provider_posts", :force => true do |t|
+    t.integer  "provider_id"
+    t.integer  "post_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "providers", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "providers", ["slug"], :name => "index_providers_on_slug", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -33,6 +95,22 @@ ActiveRecord::Schema.define(:version => 20131018155518) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "type_posts", :force => true do |t|
+    t.integer  "type_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "types", ["slug"], :name => "index_types_on_slug", :unique => true
 
   create_table "user_posts", :force => true do |t|
     t.integer  "user_id"
@@ -55,10 +133,15 @@ ActiveRecord::Schema.define(:version => 20131018155518) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "slug"
+    t.string   "profile_image"
+    t.text     "bio"
+    t.string   "banner"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|
     t.integer "user_id"

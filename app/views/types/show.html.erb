@@ -1,0 +1,11 @@
+<h1><%= @type.name.capitalize.pluralize %></h1>
+
+<div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+
+<% @type.posts.each do |post| %>
+
+<%= render 'shared/tree', :post => post %>
+
+<% end %>
+
+</div>

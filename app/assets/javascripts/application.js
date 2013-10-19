@@ -18,6 +18,12 @@
 //= require masonry/jquery.infinitescroll.min
 //= require masonry/modernizr-transitions
 //= require masonry/jquery.masonry
+//= require rails.validations
 //= require_tree .
 //
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+   $('.dropdown-toggle').dropdown(); 
+});
 

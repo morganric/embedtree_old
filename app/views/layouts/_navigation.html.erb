@@ -1,26 +1,54 @@
+
+<%= link_to image_tag("embedtree-logo.png", :width => "40px"), root_path, :class => 'nav_logo pull-left' %>
 <%= link_to "EmbedTree", root_path, :class => 'brand' %>
+<ul class="nav text-center  ">
+      <li>
+      <%= simple_form_for(Post.new, html: { :class => "navbar-form" }, :validate => true) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :url, label: false , :validate => { :presence => true },  :input_html => { :placeholder => "Enter your link here...", :style => ''} , wrapper_html: { class: 'pull-left', style: "margin-right:5px;" } %>
+            <%= f.button :submit, :value => 'Post', :class => 'btn btn-small' %>
+      <% end %>
+</ul>
 <ul class="nav pull-right">
   <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-    <% if current_user.has_role? :admin %>
-      <li>
-      <%= link_to 'Admin', users_path %>
+    <li class="dropdown">
+        <a class="dropdown-toggle"
+           data-toggle="dropdown"
+           href="#">
+           <div class="pull-left" style="margin-right:5px;">
+            <%= image_tag current_user.profile.image.url(:thumb), :width => "25px", :class => "img-circle"  %> 
+          </div>
+          <%= current_user.name %>
+            <b class="caret"></b>
+          </a>
+        <ul class="dropdown-menu">
+          <% if current_user.has_role? :admin %>
+          <li>
+          <%= link_to 'Admin', users_path %>
+          </li>
+          <li class="divider"></li>
+          <% end %>
+           <li>
+          <%= link_to 'View Profile', profile_path(current_user.profile) %>
+          </li>
+           <li>
+          <%= link_to 'Edit Profile', edit_profile_path(current_user.profile) %>
+          </li>
+           <li>
+          <%= link_to 'Edit account', edit_user_registration_path %>
+          </li>
+          <li class="divider"></li>
+          <li>
+          <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+          </li>
+        </ul>
       </li>
-    <% end %>
   <% else %>
     <li>
     <%= link_to 'Sign up', new_user_registration_path %>
+    </li>
+    <li>
+    <%= link_to 'Login', new_user_session_path %>
     </li>
   <% end %>
 </ul>

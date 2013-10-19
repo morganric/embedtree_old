@@ -1,16 +1,35 @@
+<div class="text-center">
+  <% if @user.profile_image != "" %>
+    <%= image_tag( @user.profile_image_url, :class => "img-circle") %>
+  <% end %>
+  <h1><%= @user.name %></h1>
+  <p>Email: <%= @user.email if current_user.has_role? :admin %></p>
 
-<h1><%= @user.name %></h1>
-<p>Email: <%= @user.email if @user.email %></p>
+  <p class="well"><%= @user.bio if @user.bio != "" %></p>
 
-<h2>Latest Posts</h2>
+  <h2>Latest Posts</h2>
+  <hr/>
 
-<div class="row">
-	<% @user.posts.each do |post| %>
-		<div class="span3">
-			<h3>
-				<%= post.title if post.title %>
-			</h3>
-			<%= image_tag(post.image) if post.image %>
-		</div>
-	<% end %>
+  <div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+
+      <% @user.posts.reverse.each do |post| %>
+        <%= render 'shared/tree', :post => post %>
+      <% end %>
+  </div>
 </div>
+<script type="text/javascript">
+
+ $('img').load(function(){
+            $('#masonry-container').masonry();
+        });
+
+$(function(){  
+  $('#masonry-container').masonry({
+    itemSelector: '.box',
+    isFitWidth: true
+
+  });
+
+});
+
+</script>

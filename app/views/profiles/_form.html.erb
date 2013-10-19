@@ -1,0 +1,14 @@
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :display_name %>
+    <%= f.input :image, :hint => "300px x 300px" %>
+    <%= f.input :banner, :hint => "1200px x 300px" %>
+    <%= f.input :bio, :input_html => {:rows => 3, :cols => 30 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

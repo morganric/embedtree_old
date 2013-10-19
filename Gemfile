@@ -19,6 +19,12 @@ gem 'simple_form'
 gem 'thin'
 gem 'embedly'
 gem 'querystring'
+gem 'debugger', group: [:development, :test]
+gem 'client_side_validations'
+gem 'friendly_id'
+gem "rmagick"
+gem 'carrierwave'
+gem 'cloudinary'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

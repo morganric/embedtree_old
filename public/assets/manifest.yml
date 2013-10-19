@@ -1,13 +1,17 @@
 ---
-application.js: application-259415e30971e1c583eb0dd0ad1739fd.js
-application/index.js: application-259415e30971e1c583eb0dd0ad1739fd.js
-application.css: application-6e5be0ee618da637fe6ce4ce9fdf28e4.css
-application/index.css: application-6e5be0ee618da637fe6ce4ce9fdf28e4.css
-glyphicons-halflings-white.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
-glyphicons-halflings-white/index.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
-glyphicons-halflings.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
-glyphicons-halflings/index.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
+embedtree-logo.png: embedtree-logo-045c2e5392a8a3b0b84de76a82cf76bc.png
+embedtree-logo/index.png: embedtree-logo-045c2e5392a8a3b0b84de76a82cf76bc.png
+application.js: application-bbcf298c4860a339c64be9856f780006.js
+application/index.js: application-bbcf298c4860a339c64be9856f780006.js
+application.css: application-8b71c12c0c763d91d963562b5bb0aabb.css
+application/index.css: application-8b71c12c0c763d91d963562b5bb0aabb.css
+cloudinary_cors.html: cloudinary_cors-05f2af4874bd3914c79b03b8d9acd6d1.html
+cloudinary_cors/index.html: cloudinary_cors-05f2af4874bd3914c79b03b8d9acd6d1.html
 jquery.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 jquery/index.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 masonry/loader.gif: masonry/loader-e2a65b9489a6a7d066dd12455c270cc5.gif
 masonry/loader/index.gif: masonry/loader-e2a65b9489a6a7d066dd12455c270cc5.gif
+glyphicons-halflings-white.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
+glyphicons-halflings-white/index.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
+glyphicons-halflings.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
+glyphicons-halflings/index.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png

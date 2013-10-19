@@ -1,26 +1,15 @@
-<%= link_to 'New Post', new_post_path, :class=> "pull-right btn btn-large" %>
 
-<h1>Latest Posts</h1>
-<hr/>
+<div class="row text-center">
+	<h1 class=''>Latest Posts</h1>
+	<hr/>
 
-<div id="masonry-container" class="transitions-enabled clearfix masonry">
 
-    <% @posts.each do |post| %>
-      <div class="box col3">
-        <div class="thumbnail">
-         <%= link_to image_tag(post.image), post_path(post)  %>
-            <div class="caption">
-                <h2><%= link_to post.title, post_path(post) %></h2>
-                <p> <%= post.description %></p>
-                <p>
-                    <%= link_to 'Show', post, :class => "btn btn-mini" %>
-                    <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-disabled" %>
-                    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
-                </p>
-            </div>
-        </div>
-      </div>
-    <% end %>
+	<div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+
+	    <% @posts.reverse.each do |post| %>
+	      <%= render 'shared/tree', :post => post %>
+	    <% end %>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -32,9 +21,7 @@
 $(function(){  
   $('#masonry-container').masonry({
     itemSelector: '.box',
-    // set columnWidth a fraction of the container width
-    columnWidth: 250,
-    gutterWidth: 60
+    isFitWidth: true
 
   });
 

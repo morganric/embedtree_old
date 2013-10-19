@@ -8,7 +8,17 @@ module PostsHelper
     obj = embedly_api.oembed :url => url
     @post.image =  obj[0].thumbnail_url
     @post.embed_code = obj[0].html
+    @post.title = obj[0].title
+    @post.description = obj[0].description
 
+    @type = Type.find_or_create_by_name(obj[0].type)
+    @provider = Provider.find_or_create_by_name_and_url(obj[0].provider_name, obj[0].provider_url)
+    @author = Author.find_or_create_by_name_and_url(obj[0].author_name, obj[0].author_url)
+
+  end
+
+  def post_count(post)
+      UserPost.where(:post_id => post).count
   end
 
 end

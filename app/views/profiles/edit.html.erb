@@ -1,0 +1,7 @@
+<h1>Edit <%= link_to @profile.user.name, @profile %> Profile</h1>
+<hr/>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @profile %> |
+<%= link_to 'Back', profiles_path %>

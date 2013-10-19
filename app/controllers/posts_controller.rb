@@ -41,26 +41,44 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
-    embedly(params[:post][:url])
 
-    respond_to do |format|
-      if @post.save
-        associate_user
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    if Post.where(:url => params[:post][:url]) != []
+      @post = Post.where(:url => params[:post][:url])[0]
+      if UserPost.where(:user_id => current_user, :post_id => @post.id) == [] 
+        associate_user 
       end
-    end
+      respond_to do |format|
+        format.html { redirect_to @post, notice: 'Post already exists here... thanks for adding though.' }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    else
+     
+      @post = Post.new(params[:post])
+      unless params[:post][:url] == ""
+      embedly(params[:post][:url])
+      end
+
+      respond_to do |format|
+        if @post.save
+          associate_user
+          associate_provider
+          associate_author
+          associate_type
+          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+          format.json { render json: @post, status: :created, location: @post }
+        else
+          format.html { redirect_to :back, notice: 'Error posting' }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+      end
+     end 
+
   end
 
   # PUT /posts/1
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -79,7 +97,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
@@ -87,7 +105,21 @@ class PostsController < ApplicationController
   private 
 
   def associate_user
-    UserPost.create!(:user_id => current_user.id, :post_id => @post.id )
+    if current_user
+      UserPost.create!(:user_id => current_user.id, :post_id => @post.id )
+    end
+  end
+
+  def associate_provider
+    ProviderPost.create!(:post_id => @post.id, :provider_id => @provider.id )
+  end
+
+  def associate_author
+    AuthorPost.create!(:post_id => @post.id, :author_id => @author.id )
+  end
+
+  def associate_type
+    TypePost.create!(:post_id => @post.id, :type_id => @type.id )
   end
 
 end

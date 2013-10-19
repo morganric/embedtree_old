@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: ticktacklondon
+  api_key: '478895954554357'
+  api_secret: G_T3YWa6786eldY-_0w6LRoiqxA
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: ticktacklondon
+  api_key: '478895954554357'
+  api_secret: G_T3YWa6786eldY-_0w6LRoiqxA
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: ticktacklondon
+  api_key: '478895954554357'
+  api_secret: G_T3YWa6786eldY-_0w6LRoiqxA
+  enhance_image_tag: true
+  static_image_support: false

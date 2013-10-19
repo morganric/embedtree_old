@@ -1,0 +1,40 @@
+<div class="row text-center">
+
+    <%= image_tag @profile.image.url, :class => "img-circle", :width => '150px' %>
+      <h1><%= @profile.display_name %></h1>
+
+  <p class="well">
+    <%= @profile.bio %>
+  </p>
+
+<% if can? :edit, @profile %>
+  <%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% end %>
+
+  <h2>Latest Posts</h2>
+  <hr/>
+
+  <div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+
+      <% @profile.user.posts.reverse.each do |post| %>
+            <%= render 'shared/tree', :post => post %>
+          <% end %>
+      </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+ $('img').load(function(){
+            $('#masonry-container').masonry();
+        });
+
+$(function(){  
+  $('#masonry-container').masonry({
+    itemSelector: '.box',
+    isFitWidth: true
+  });
+});
+
+</script>

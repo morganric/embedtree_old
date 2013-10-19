@@ -1,0 +1,43 @@
+<div class="box col3">
+    <div class="thumbnail">
+     <%= link_to image_tag(post.image), post_path(post)  %>
+        <div class="caption">
+            <h5><%= link_to post.title.capitalize, post_path(post) %></h5>
+            <p> <%= truncate(post.description, :length => 150) %></p>
+
+            <% if post.provider %>
+            <span>on <%= link_to post.provider.name, provider_path(post.provider) %></span>
+            <% end %>
+
+            <% if post.author %>
+            <span> by <%= link_to post.author.name, author_path(post.author) %></span>
+            <% end %>
+            <br/>
+
+
+            <ul class="post_users plull-left">
+                <span>via</span>
+                  <% post.users.limit(3).each do |user| %>
+                    <li><%= link_to user.name, vanity_url_path(user.profile) %> &nbsp;</li>
+                  <% end %>
+            </ul>
+
+            <div class="clearfix">
+
+                <label class="label label-mini label-success"><%= pluralize(post_count(post), 'post') %></label>
+
+                <% if post.type %>
+                <label class="label label-mini"><%= link_to post.type.name.capitalize, type_path(post.type) %></label>
+                <% end %>
+
+                <hr/>
+
+                <% if can? :manage, @post %>
+                <%= link_to 'View', post, :class => "btn btn-mini pull-right " %>
+                <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
+                 <% end %>
+            </div>
+        </div>
+    </div>
+</div>

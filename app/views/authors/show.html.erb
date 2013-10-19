@@ -1,0 +1,11 @@
+<h1><%= @author.name %></h1>
+
+<div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+
+<% @author.posts.each do |post| %>
+
+<%= render 'shared/tree', :post => post %>
+
+<% end %>
+
+</div>
