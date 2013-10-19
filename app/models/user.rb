@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
 
 
   def create_profile
-    Profile.create("user_id" => id)
-    redirect_to edit_profile_path
+    @profile = Profile.new(:user_id => id)
+    @profile.save
   end
 
   
