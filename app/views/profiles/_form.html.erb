@@ -5,7 +5,7 @@
     <%= f.input :display_name %>
     <%= f.input :image, :hint => "300px x 300px" %>
 
-    <%= image_tag @profile.image.url(:thumb) || "embedtree-logo-green.png" %>
+    <%= image_tag @profile.image.url(:thumb)  if @profile.image.url  %>
     <%= f.input :banner, :hint => "1200px x 300px" %>
     <%= image_tag @profile.banner.url(:thumb) if @profile.banner.url %>
     <%= f.input :bio, :input_html => {:rows => 3, :cols => 30 } %>
