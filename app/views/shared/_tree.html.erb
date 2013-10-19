@@ -6,14 +6,13 @@
             <p> <%= truncate(post.description, :length => 150) %></p>
 
             <% if post.provider %>
-            <span>on <%= link_to post.provider.name, provider_path(post.provider) %></span>
+            <span>On <%= link_to post.provider.name, provider_path(post.provider) %></span>
             <% end %>
 
             <% if post.author %>
-            <span> by <%= link_to post.author.name, author_path(post.author) %></span>
+            <span> By <%= link_to post.author.name, author_path(post.author) %></span>
             <% end %>
             <br/>
-
 
             <ul class="post_users plull-left">
                 <span>via</span>
@@ -21,6 +20,17 @@
                     <li><%= link_to user.name, vanity_url_path(user.profile) %> &nbsp;</li>
                   <% end %>
             </ul>
+
+            <% if post.tags.any? %>
+              <p>
+                </label> 
+                <% post.tags.each do |tag| %>
+                  <span><%= link_to "##{tag.name}", tagged_url(tag.name)%></span>
+                <% end %>
+              </p>
+            <% end %>
+
+             <hr/>
 
             <div class="clearfix">
 

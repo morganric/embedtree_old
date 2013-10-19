@@ -25,5 +25,10 @@
 $( document ).ready(function() {
     console.log( "ready!" );
    $('.dropdown-toggle').dropdown(); 
+
+   $('label.label a').html('Rich').prepend('<i class="icon-music icon-white"></i> ');
+   $('label.label a').html('Video').prepend('<i class="icon-film icon-white"></i> ');
+   $('label.label a').html('Photo').prepend('<i class="icon-picture icon-white"></i> ');
+   $('label.label a').html('Link').prepend('<i class="icon-bookmark icon-white"></i> ');
 });
 

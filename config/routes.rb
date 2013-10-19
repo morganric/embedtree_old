@@ -10,7 +10,7 @@ Embedtree::Application.routes.draw do
   authenticated :user do
     root :to => 'posts#index'
   end
-  root :to => "home#index"
+  root :to => "posts#index"
   devise_for :users
   resources :users
 
