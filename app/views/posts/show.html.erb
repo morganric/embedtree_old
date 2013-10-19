@@ -13,7 +13,7 @@
       <hr/>
     </section>
 
-  <section class="span8">
+  <section class="span7">
   
   <div id="" class="flex-video widescreen">
         <% if @post.embed_code %>
@@ -32,37 +32,56 @@
     <% end %>
 
   </section>
-  <side class="span2">
-    <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
-
-    <% if @post.provider %>
-    <span>on <%= link_to @post.provider.name, provider_path(@post.provider) %></span>
-    <% end %>
-
-    <% if @post.author %>
-    <span> by <%= link_to @post.author.name, author_path(@post.author) %></span>
-    <% end %>
-    <br/>
-
-    <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
-    <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
+  <side class="span3">
 
     <section>
-        <p>via</p>
-        <ul>
-          <% @post.users.each do |user| %>
-            <li><%= link_to user.name, vanity_url_path(user.profile) %></li>
-          <% end %>
-        </ul>
+      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
+      <br/>
+      <p>
+        <% if @post.provider %>
+        <span>On <%= link_to @post.provider.name, provider_path(@post.provider) %></span>
+        <% end %>
+        <% if @post.author %>
+        <span> By <%= link_to @post.author.name, author_path(@post.author) %></span>
+        <% end %>
+      </p>
+
+      <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
+      <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
     </section>
+
+    <section>
+        <p>Via:
+          <% @post.users.limit(3).each do |user| %>
+            <span><%= link_to user.name, vanity_url_path(user.profile) %></span>
+          <% end %>
+        </p>
+    </section>
+
+    <section>
+      <% @post.tags.any? %>
+      <p>Tags:
+          <% @post.tags.each do |tag| %>
+          <span><%= link_to "##{tag.name}", tagged_path(:tag => tag.name) %></span>
+        <% end %>
+      </p>
+      <hr/>
+
+      <% if current_user.has_role? :admin %>
+       <%= simple_form_for(@post) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.text_area :tag_list, :cols => 4, :rows => 3, :class => "span3", :stye => "height: 80px;" %>
+            <%= f.button :submit, :value => "Add Tags", :class => "btn btn-mini" %>
+          </div>
+        <% end %>
+         <%= link_to 'Edit', edit_post_path(@post) %>
+      <% end %>
+
+    </section>
+
+
   </side>
-
-
 
 </article>
 
-
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

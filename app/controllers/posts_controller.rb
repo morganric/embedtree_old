@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource  :except => [:show, :create]
+  
   include PostsHelper
   # GET /posts
   # GET /posts.json
@@ -14,11 +16,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    
     @post = Post.find(params[:id])
-
+    
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
+          format.html # show.html.erb
+          format.json { render json: @post }
     end
   end
 
@@ -100,6 +103,15 @@ class PostsController < ApplicationController
       format.html { redirect_to :back }
       format.json { head :no_content }
     end
+  end
+
+  def tagged
+    if params[:tag].present? 
+      @posts = Post.tagged_with(params[:tag])
+      @tag = params[:tag]
+    else 
+      @posts = Post.all
+    end  
   end
 
   private 

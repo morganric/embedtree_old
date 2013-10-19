@@ -1,4 +1,6 @@
 module PostsHelper
+  include ActsAsTaggableOn::TagsHelper
+  
 	require 'embedly'
   require 'json'
 

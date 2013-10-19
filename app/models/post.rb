@@ -1,9 +1,11 @@
 class Post < ActiveRecord::Base
 	extend FriendlyId
 
-  attr_accessible :description, :embed_code, :image, :title, :url, :slug
+  attr_accessible :description, :embed_code, :image, :title, :url, :slug, :tag_list
 
   validates_presence_of :url
+
+  acts_as_taggable_on :tags
 
   friendly_id :title, use: :slugged
 
