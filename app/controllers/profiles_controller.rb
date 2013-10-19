@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-load_and_authorize_resource  :except => [:show, :edit]
+load_and_authorize_resource  :except => [:show, :edit, :update]
 
   # GET /profiles
   # GET /profiles.json

@@ -1,7 +1,8 @@
 <div class="row text-center">
 
     <%= image_tag(@profile.image.url  || "embedtree-logo-green.png", :class => "img-circle", :width => '150px')  %>
-      <h1><%= @profile.display_name %></h1>
+      <h1><%=  @profile.display_name || @profile.user.name  %></h1>
+      <hr/>
 
   <p class="well">
     <%= @profile.bio %>

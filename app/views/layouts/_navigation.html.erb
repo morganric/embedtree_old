@@ -29,7 +29,7 @@
              <div class="pull-left" style="margin-right:5px;">
               <%= image_tag current_user.profile.image.url(:thumb) || "embedtree-logo.png", :width => "25px", :class => "img-circle"  %> 
             </div>
-            <%= current_user.name %>
+            <%= current_user.profile.display_name || current_user.name %>
               <b class="caret"></b>
             </a>
           <ul class="dropdown-menu">
