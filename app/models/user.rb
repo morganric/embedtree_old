@@ -24,8 +24,11 @@ class User < ActiveRecord::Base
 
   after_create :create_profile
 
+
   def create_profile
-    Profile.new(:user_id => current_user.id)
+    Profile.create("user_id" => id)
+    redirect_to edit_profile_path
   end
+
   
 end

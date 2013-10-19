@@ -23,10 +23,10 @@ load_and_authorize_resource  :except => [:show]
     respond_to do |format|
       if @profile
           format.html # show.html.erb
-          format.json { render json: @profile }
+          format.json { render json: vanity_url_path(@profile) }
       else
           format.html { redirect_to root_url }
-          format.json { render json: @profile.errors, status: :unprocessable_entity }
+          format.json { render json: vanity_url_path(@profile).errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,7 +38,7 @@ load_and_authorize_resource  :except => [:show]
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @profile }
+      format.json { render json: vanity_url_path(@profile) }
     end
   end
 
@@ -54,11 +54,11 @@ load_and_authorize_resource  :except => [:show]
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render json: @profile, status: :created, location: @profile }
+        format.html { redirect_to vanity_url_path(@profile), notice: 'Profile was successfully created.' }
+        format.json { render json: vanity_url_path(@profile), status: :created, location: @profile }
       else
         format.html { render action: "new" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { render json: vanity_url_path(@profile).errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,11 +70,11 @@ load_and_authorize_resource  :except => [:show]
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to vanity_url_path(@profile), notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { render json: vanity_url_path(@profile).errors, status: :unprocessable_entity }
       end
     end
   end
