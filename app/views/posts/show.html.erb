@@ -45,13 +45,18 @@
         <span> By <%= link_to @post.author.name, author_path(@post.author) %></span>
         <% end %>
       </p>
-
-      <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
-      <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
     </section>
 
     <section>
-        <p>Via:
+      <p>
+      <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
+      <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
+    </p>
+    </section>
+
+    <section>
+
+        <p>Via
           <% @post.users.limit(3).each do |user| %>
             <span><%= link_to user.name, vanity_url_path(user.profile) %></span>
           <% end %>
@@ -59,15 +64,16 @@
     </section>
 
     <section>
-      <% @post.tags.any? %>
+      <% if @post.tags.any? %>
       <p>Tags:
           <% @post.tags.each do |tag| %>
           <span><%= link_to "##{tag.name}", tagged_path(:tag => tag.name) %></span>
         <% end %>
       </p>
       <hr/>
+      <% end %>
 
-      <% if current_user.has_role? :admin %>
+      <% if can? :manage, @post %>
        <%= simple_form_for(@post) do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
