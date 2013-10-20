@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   attr_accessible :description, :embed_code, :image, :title, :url, :slug, :tag_list
 
+  validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_presence_of :url
 
   acts_as_taggable_on :tags
