@@ -34,19 +34,26 @@
 
             <div class="clearfix">
 
-                <label class="label label-mini label-success"><%= pluralize(post_count(post), 'post') %></label>
+                <label class="label label-mini label-success"><%= pluralize(post_count(post), 'Post') %></label>
 
                 <% if post.type %>
-                <label class="label label-mini"><%= link_to post.type.name.capitalize, type_path(post.type) %></label>
+                <label class="label label-mini label-<%= post.type.name %>"><%= link_to post.type.name.capitalize, type_path(post.type) %></label>
                 <% end %>
 
                 <hr/>
 
+                
+
                 <% if can? :manage, @post %>
-                <%= link_to 'View', post, :class => "btn btn-mini pull-right " %>
+                <%= link_to 'View', post, :class => "btn btn-mini" %>
                 <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
-                 <% end %>
+                <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
+                <% end %>
+
+                <% if posted(current_user, post) %>
+                <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
+                 :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
+                <% end %>
             </div>
         </div>
     </div>

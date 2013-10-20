@@ -23,4 +23,12 @@ module PostsHelper
       UserPost.where(:post_id => post).count
   end
 
+  def posted(user,post)
+    if UserPost.where(:user_id => user.id, :post_id => post.id) != []
+      return true
+    else
+      return false
+    end
+  end
+
 end
