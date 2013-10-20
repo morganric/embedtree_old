@@ -8,5 +8,10 @@ class Provider < ActiveRecord::Base
 
   has_many :provider_posts
   has_many :posts, :through => :provider_posts
+
+  def has_posts?
+  	self.posts.count > 0
+  end
+
  
 end

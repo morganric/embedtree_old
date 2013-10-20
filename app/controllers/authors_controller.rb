@@ -2,6 +2,13 @@ class AuthorsController < ApplicationController
 
 def index
 	@authors = Author.all
+  @published_authors = []
+
+  @authors.each do |author|
+    if author.has_posts?
+      @published_authors << author
+    end
+  end
 
 	respond_to do |format|
       format.html # index.html.erb

@@ -1,5 +1,12 @@
-<h1><%= @provider.name %></h1>
+<h1 class="text-center">Posts on <%= link_to @provider.name.capitalize, @provider.url %></h1>
+<hr />
+
+<div id="masonry-container" class="transitions-enabled centered clearfix masonry">
 
 <% @provider.posts.each do |post| %>
-	<%= post.title %>
+
+<%= render 'shared/tree', :post => post %>
+
 <% end %>
+
+</div>

@@ -22,18 +22,37 @@
 //= require_tree .
 //
 
+
+
 $( document ).ready(function() {
-    console.log( "ready!" );
-   $('.dropdown-toggle').dropdown(); 
 
 
-   $('label.label.label-rich a').html('Audio').prepend('<i class="icon-music icon-white"></i> ');
-   $('label.label.label-video a').prepend('<i class="icon-film icon-white"></i> ');
-   $('label.label.label-picture a').prepend('<i class="icon-picture icon-white"></i> ');
-   $('label.label.label-link a').prepend('<i class="icon-bookmark icon-white"></i> ');
+  console.log( "ready!" );
 
-   $('.delete_user_post').on('click', function() {
+  $('img').load(function(){
+	            $('#masonry-container').masonry();
+	        });
+
+	$(function(){  
+	  $('#masonry-container').masonry({
+	    itemSelector: '.box',
+	    isFitWidth: true
+
+	  });
+
+	});
+
+  $('.dropdown-toggle').dropdown(); 
+
+
+  $('label.label.label-rich a').html('Audio').prepend('<i class="icon-music icon-white"></i> ');
+  $('label.label.label-video a').prepend('<i class="icon-film icon-white"></i> ');
+  $('label.label.label-photo a').prepend('<i class="icon-picture icon-white"></i> ');
+  $('label.label.label-link a').prepend('<i class="icon-bookmark icon-white"></i> ');
+
+  $('.delete_user_post').on('click', function() {
    		$(this).fadeOut();
-   });
+  });
+
 });
 

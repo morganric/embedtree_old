@@ -57,9 +57,26 @@ a.brand:hover {
 	background: white !important;
 }
 
+.col3 {
+  width:300px !important;
+}
+
+.col3 img {
+  max-width:100% !important;
+}
+
 input#post_url {
   margin-top: 10px;
 	padding: 6px !important; 
+}
+
+.nav-large {
+  font-size: 20px;
+  padding-top: 16px;
+}
+
+li.dropdown {
+  top: 10px !important;
 }
 
 ul {

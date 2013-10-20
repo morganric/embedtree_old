@@ -1,5 +1,18 @@
-<ul>
-<% @authors.each do |author| %>
-	<li><%= link_to author.name, author_path(author) %></li>
-<% end %>
-</ul>
+
+<div class="row text-center">
+	<h1> Creators & Conributors</h1>
+
+	<hr />
+
+	<ul>
+	<% @published_authors.shuffle.first(10).each do |author| %>
+		<li>
+			<h3><%= link_to author.name.to_s.capitalize , author_path(author) %></h3>
+			<label class="label label-success"><%= link_to pluralize(author.posts.count, 'Post'), author %></label>
+
+		</li>
+	<% end %>
+	</ul>
+</div>
+
+
