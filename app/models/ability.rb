@@ -33,7 +33,7 @@ class Ability
   end
 
   def visitor_rights
-    can :show,  Page
+
   end
 
 
