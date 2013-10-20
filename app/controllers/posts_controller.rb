@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource  :except => [:show, :create, :index]
+  load_and_authorize_resource 
   
   include PostsHelper
   # GET /posts
