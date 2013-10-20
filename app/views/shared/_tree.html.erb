@@ -2,15 +2,15 @@
     <div class="thumbnail">
      <%= link_to image_tag(post.image), post_path(post)  %>
         <div class="caption">
-            <h5><%= link_to post.title.capitalize, post_path(post) %></h5>
+            <h5><%= link_to post.title.capitalize, post_path(post) if post.title %></h5>
             <p> <%= truncate(post.description, :length => 150) %></p>
 
             <% if post.provider %>
-            <span>On <%= link_to post.provider.name, provider_path(post.provider) %></span>
+            <span>On <%= link_to post.provider.name, provider_path(post.provider) if post.provider %></span>
             <% end %>
 
             <% if post.author %>
-            <span> By <%= link_to post.author.name, author_path(post.author) %></span>
+            <span> By <%= link_to post.author.name, author_path(post.author) if post.author %></span>
             <% end %>
             <br/>
 
