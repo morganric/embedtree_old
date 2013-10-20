@@ -1,18 +1,32 @@
-
-<div class="row text-center">
-	<h1> Creators & Conributors</h1>
+<div class="row">
+	<h1 class="text-center">Creators & Conributors</h1>
 
 	<hr />
 
-	<ul>
-	<% @published_authors.shuffle.first(10).each do |author| %>
-		<li>
-			<h3><%= link_to author.name.to_s.capitalize , author_path(author) %></h3>
-			<label class="label label-success"><%= link_to pluralize(author.posts.count, 'Post'), author %></label>
 
-		</li>
+	<% @published_authors.shuffle.first(10).each do |author| %>
+		<div class="row clearfix offset1">
+			
+			<div class="span1">
+						<span><%= image_tag author.posts.last.image, :width => "100px" %></span>
+			</div>
+
+			<div class="pull-left span7">
+
+				<h3>
+					<%= link_to author.name.to_s.capitalize , author_path(author) %>
+					<blockquote><h6><%= link_to truncate(author.posts.last.description, :length => 140 ), post_path(author.posts.last) %></h6></blockquote>
+				</h3>
+
+								<label class="label label-success pull-right"><%= link_to pluralize(author.posts.count, 'Post'), author %></label>
+
+			</div>
+
+		</div>
+		<hr/>
 	<% end %>
-	</ul>
+
 </div>
+
 
 

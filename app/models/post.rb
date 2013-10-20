@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_presence_of :url
 
+
   acts_as_taggable_on :tags
 
   friendly_id :title, use: :slugged

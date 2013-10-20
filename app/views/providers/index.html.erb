@@ -1,16 +1,30 @@
-<div class="row text-center">
-	<h1>Platforms & Publishers</h1>
+<div class="row">
+	<h1 class="text-center">Platforms & Publishers</h1>
 
 	<hr />
 
-	<ul>
-	<% @published_providers.shuffle.first(10).each do |provider| %>
-		<li>
-			<h3><%= link_to provider.name.to_s.capitalize , provider_path(provider) %></h3>
-			<label class="label label-success"><%= link_to pluralize(provider.posts.count, 'Post'), provider %></label>
 
-		</li>
+	<% @published_providers.shuffle.first(10).each do |provider| %>
+		<div class="row clearfix offset1">
+			
+			<div class="span1">
+						<span><%= image_tag provider.posts.last.image, :width => "100px" %></span>
+			</div>
+
+			<div class="pull-left span7">
+
+				<h3>
+					<%= link_to provider.name.to_s.capitalize , provider_path(provider) %>
+					<blockquote><h6><%= link_to truncate(provider.posts.last.description, :length => 140 ), post_path(provider.posts.last) %></h6></blockquote>
+				</h3>
+
+								<label class="label label-success pull-right"><%= link_to pluralize(provider.posts.count, 'Post'), provider %></label>
+
+			</div>
+
+		</div>
+		<hr/>
 	<% end %>
-	</ul>
+
 </div>
 
