@@ -50,7 +50,7 @@
                 <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
                 <% end %>
 
-                <% if posted(current_user, post) %>
+                <% if current_user && posted(current_user, post) %>
                 <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
                  :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
                 <% end %>
