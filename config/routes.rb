@@ -1,5 +1,7 @@
 Embedtree::Application.routes.draw do
 
+  resources :pages
+
   resources :posts
   match 'tagged/:id' => 'posts#tagged', :as => 'tagged'
 
@@ -12,7 +14,7 @@ Embedtree::Application.routes.draw do
   authenticated :user do
     root :to => 'posts#index'
   end
-  root :to => "home#index"
+  root :to => "home#index"  
   devise_for :users
   resources :users
 
