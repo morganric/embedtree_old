@@ -19,17 +19,13 @@
 </ul>
 
 <div class="nav-collapse collapse">
-
   <ul class="nav pull-right">
     <% if user_signed_in? %>
       <li class="dropdown">
           <a class="dropdown-toggle"
              data-toggle="dropdown"
              href="#">
-             <div class="" style="margin-left:20px; margin-bottom:5px;">
-              <%= image_tag current_user.profile.image.url(:thumb) || "embedtree-logo.png", :width => "25px", :class => "img-circle"  %> 
-            </div>
-            <%= current_user.profile.display_name || current_user.name %>
+              <%= image_tag current_user.profile.image.url(:thumb) || "embedtree-logo.png", :width => "30px", :class => "img-circle"  %> 
               <b class="caret"></b>
             </a>
           <ul class="dropdown-menu">
@@ -40,7 +36,7 @@
             <li class="divider"></li>
             <% end %>
              <li>
-            <%= link_to 'View Profile', vanity_url_path(current_user.profile) %>
+            <%= link_to "#{current_user.profile.display_name || current_user.name }", vanity_url_path(current_user.profile) %>
             </li>
              <li>
             <%= link_to 'Edit Profile', edit_profile_path(current_user.profile) %>
@@ -55,12 +51,17 @@
           </ul>
         </li>
     <% else %>
-      <li>
+      <li class="nav-large">
       <%= link_to 'Sign up', new_user_registration_path %>
       </li>
-      <li>
+      <li class="nav-large">
       <%= link_to 'Login', new_user_session_path %>
       </li>
     <% end %>
+  </ul>
+  <ul class="nav pull-right">
+    <li class="nav-large"><%= link_to 'Creators', authors_path %></li>
+    <li class="nav-large"><%= link_to 'Media', types_path %></li>
+    <li class="nav-large"><%= link_to 'Partners', providers_path %></li>
   </ul>
 </div>

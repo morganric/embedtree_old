@@ -50,7 +50,7 @@
     <section>
       <p>
       <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
-      <label class="label label-mini"><%= link_to @post.type.name, type_path(@post.type) %></label>
+      <label class="label label-mini label-<%= @post.type.name %>"><%= link_to @post.type.name, type_path(@post.type) %></label>
     </p>
     </section>
 

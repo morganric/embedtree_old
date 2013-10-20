@@ -1,5 +1,16 @@
-<ul>
-<% @providers.each do |provider| %>
-	<li><%= link_to provider.name, provider_path(provider) %></li>
-<% end %>
-</ul>
+<div class="row text-center">
+	<h1>Platforms & Publishers</h1>
+
+	<hr />
+
+	<ul>
+	<% @published_providers.shuffle.first(10).each do |provider| %>
+		<li>
+			<h3><%= link_to provider.name.to_s.capitalize , provider_path(provider) %></h3>
+			<label class="label label-success"><%= link_to pluralize(provider.posts.count, 'Post'), provider %></label>
+
+		</li>
+	<% end %>
+	</ul>
+</div>
+

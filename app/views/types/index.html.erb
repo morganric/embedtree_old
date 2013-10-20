@@ -1,7 +1,76 @@
-<h1>Post Types</h1>
+<h1 class="text-center">Media Types</h1>
+<hr/>
 
-<ul>
-<% @types.each do |type| %>
-	<li><h2><%= link_to type.name.capitalize.pluralize, type_path(type) %></h2></li>
-<% end %>
-</ul>
+	<div class="text-center">
+
+		<ul class="nav nav-pills" id="myTab">
+			<% @types.each do |type| %>
+			  <li class="span2	label-<%= type.name %>">
+			  		<a href="#<%= type.name %>">
+			  			<%= type.name.capitalize.pluralize %>
+			  		</a>
+		  	</li>
+		  <% end %>
+		</ul>
+	</div>
+
+	<div class="text-center">
+
+		<div class="tab-content" id="myContent">
+			<% @types.each do |type| %>
+					<div class="tab-pane" id="<%= type.name %>">
+
+						<div id="masonry-container" class="transitions-enabled centered clearfix masonry">
+							<% type.posts.limit(10).each do |post| %>
+								<!-- <li><%= link_to post.title, post %></li> -->	
+
+								<%= render 'shared/tree', :post => post %>
+
+							<% end %>
+						</div>
+					</div>
+			<% end %>
+
+		</div>
+
+	</div>
+
+	<style type="text/css">
+
+	#myTab {
+		display: inline-block;
+		margin: 0 auto;
+	}
+
+	.nav-pills li a {
+		background: #ddd;
+		color: white;
+	}
+
+	#myContent {
+		overflow:hidden;
+	}
+
+	</style>
+
+
+<script>
+
+	$(function () {
+    $('#myTab li:first').addClass('active');
+    $('#myContent div:first').addClass('active');
+  });	
+
+  $('#myTab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	})
+
+	 $('.label-rich a').html('Audio').prepend('<i class="icon-music icon-white"></i> ');
+	 $('.label-video a').prepend('<i class="icon-film icon-white"></i> ');
+	 $('.label-photo a').prepend('<i class="icon-picture icon-white"></i> ');
+	 $('.label-link a').prepend('<i class="icon-bookmark icon-white"></i> ');
+
+
+</script>
+
