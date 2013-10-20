@@ -7,7 +7,7 @@
 <%= link_to image_tag("embedtree-logo.png", :width => "55px"), root_path, :class => 'nav_logo pull-left' %>
 <%= link_to "EmbedTree<br/><span style='font-size:50%'>#IncreasingSerendipity</span>
 ".html_safe, root_path, :class => 'brand' %>
-
+<% if user_signed_in? %>
 <ul class="nav">
       <li>
       <%= simple_form_for(Post.new, html: { :class => "navbar-form", :style => "margin: 10px; auto" }, :validate => true) do |f| %>
@@ -17,10 +17,13 @@
       <% end %>
     </li>
 </ul>
-
+<% end %>
 <div class="nav-collapse collapse">
   <ul class="nav pull-right">
     <% if user_signed_in? %>
+      <li class="nav-large"><%= link_to 'Creators', authors_path %></li>
+      <li class="nav-large"><%= link_to 'Media', types_path %></li>
+      <li class="nav-large"><%= link_to 'Partners', providers_path %></li>
       <li class="dropdown">
           <a class="dropdown-toggle"
              data-toggle="dropdown"
@@ -59,9 +62,9 @@
       </li>
     <% end %>
   </ul>
+  <%# if can? :index, Type %>
   <ul class="nav pull-right">
-    <li class="nav-large"><%= link_to 'Creators', authors_path %></li>
-    <li class="nav-large"><%= link_to 'Media', types_path %></li>
-    <li class="nav-large"><%= link_to 'Partners', providers_path %></li>
+    <li class="nav-large"><%#= link_to 'Media', types_path %></li>
   </ul>
+  <%# end %>
 </div>

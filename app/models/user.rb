@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
   has_many :user_posts
 
   after_create :create_profile
+  after_create :assign_default_role
+
+   def assign_default_role
+    add_role(:user)
+  end
 
 
   def create_profile
