@@ -1,8 +1,6 @@
-
-
 <article class="row">
 
-   <section class="span10">
+   <section class="">
       <h1>
           <% if @post.title != "" %>
             <%= link_to @post.title, @post.url, :target => "_blank"  %>
@@ -11,9 +9,9 @@
           <% end %>
       </h1>
       <hr/>
-    </section>
+  </section>
 
-  <section class="span7">
+  <div class="span7">
   
   <div id="" class="flex-video widescreen">
         <% if @post.embed_code %>
@@ -31,7 +29,8 @@
     <% else %>
     <% end %>
 
-  </section>
+  </div>
+
   <side class="span3">
 
     <section>

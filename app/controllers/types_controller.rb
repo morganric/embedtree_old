@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
 
 def index
-	@types = Type.all
+	@types = Type.order('name DESC').find(:all, :conditions => ["name != ?", 'error'])
 
 	respond_to do |format|
       format.html # index.html.erb

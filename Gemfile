@@ -31,6 +31,9 @@ gem "rmagick"
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'acts-as-taggable-on', '~> 2.3.1'
+# gem 'google_dfp', :git => 'git://github.com/digineo/google_dfp.git'
+gem "google-dfp-api", "~> 0.7.0"
+gem 'dfp_helper'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
