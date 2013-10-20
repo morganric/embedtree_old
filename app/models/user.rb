@@ -29,6 +29,5 @@ class User < ActiveRecord::Base
     @profile = Profile.new(:user_id => id)
     @profile.save
   end
-
   
 end
