@@ -12,7 +12,7 @@
       <li>
       <%= simple_form_for(Post.new, html: { :class => "navbar-form", :style => "margin: 10px; auto" }, :validate => true) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :url, label: false , :validate => { :presence => true },  :input_html => { :placeholder => "Enter your link here...", :style => ''} , wrapper_html: { :class => 'pull-left', style: "margin-right:5px;" } %>
+            <%= f.input :url, label: false , :validate => { :presence => true },  :input_html => { :placeholder => "Enter a link here...", :style => ''} , wrapper_html: { :class => 'pull-left', style: "margin-right:5px;" } %>
             <%= f.button :submit, :value => 'Post', :class => 'btn' %>
       <% end %>
     </li>
