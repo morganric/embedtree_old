@@ -1,6 +1,6 @@
 <article class="row">
 
-   <section class="">
+   <section class="span10">
       <h1>
           <% if @post.title != "" %>
             <%= link_to @post.title, @post.url, :target => "_blank"  %>
@@ -13,13 +13,13 @@
 
   <div class="span7">
   
-  <div id="" class="flex-video widescreen">
+  
         <% if @post.embed_code %>
+        <div id="" class="flex-video widescreen">
           <%= @post.embed_code.html_safe %>
-        <% else %>
-          <p class="well" >Sorry, there is no embed code.</p> 
+        </div>
         <% end %>
-  </div>
+
 
 
     <% if @post.description != "" %>
@@ -34,7 +34,7 @@
   <side class="span3">
 
     <section>
-      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
+      <%= link_to image_tag(@post.image, :width => '100%'), @post.url, :class => "thumbnail" %>
       <br/>
       <p>
         <% if @post.provider %>

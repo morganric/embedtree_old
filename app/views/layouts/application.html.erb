@@ -16,19 +16,27 @@
       gads.async = true;
       gads.type = 'text/javascript';
       var useSSL = 'https:' == document.location.protocol;
-      gads.src = (useSSL ? 'https:' : 'http:') +
+      gads.src = (useSSL ? 'https:' : 'http:') + 
       '//www.googletagservices.com/tag/js/gpt.js';
       var node = document.getElementsByTagName('script')[0];
       node.parentNode.insertBefore(gads, node);
       })();
       </script>
-       
+
       <script type='text/javascript'>
       googletag.cmd.push(function() {
-      googletag.defineSlot('/10854922/leaderboard', [728, 90], 'div-gpt-ad-1382281280365-0').addService(googletag.pubads());
+      googletag.defineSlot('/10854922/leaderboard', [728, 90], 'div-gpt-ad-1382305819403-0').addService(googletag.pubads());
       googletag.pubads().enableSingleRequest();
       googletag.enableServices();
       });
+    </script>
+
+    <script type='text/javascript'>
+    googletag.cmd.push(function() {
+    googletag.defineSlot('/10854922/MPU', [300, 250], 'div-gpt-ad-1382308624861-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+    });
     </script>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
@@ -46,11 +54,12 @@
             <div class="span10 offset1">
               <%= render 'layouts/messages' %>
               <!-- leaderboard -->
-              <div id='div-gpt-ad-1382281280365-0' style='width:728px; height:90px;'>
-              <script type='text/javascript'>
-              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1382281280365-0'); });
-              </script>
+              <div id='div-gpt-ad-1382305819403-0' style='width:728px; height:90px; margin:0 auto;' class="leaderbord home_banner">
+                <script type='text/javascript'>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1382305819403-0'); });
+                </script>
               </div>
+              <br/>
               <%= yield %>
             </div>
           </div>
