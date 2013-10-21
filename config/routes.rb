@@ -6,6 +6,7 @@ Embedtree::Application.routes.draw do
   match 'tagged/:id' => 'posts#tagged', :as => 'tagged'
 
   delete 'user_posts/:user_id/:post_id', to: 'user_posts#destroy',  :as => 'delete_user_post'
+  post 'user_posts/:user_id/:post_id', to: 'user_posts#create',  :as => 'create_user_post'
 
   resources :providers, :only => [:show, :index]
   resources :authors, :only => [:show, :index]
