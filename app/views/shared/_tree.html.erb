@@ -48,12 +48,21 @@
                     <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
                     <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
                     <% end %>
+
                     <% if posted(current_user, post) %>
+                    <p>
                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
                      :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
-                     <% else %>
                      <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
-                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right delete_user_post" %>
+                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post hidden" %>
+                    </p>
+                     <% else %>
+                     <p>
+                     <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post" %>
+                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post hidden" %>
+                   </p>
                      <% end %>
                 <% end %>
             </div>

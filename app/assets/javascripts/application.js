@@ -51,7 +51,13 @@ $( document ).ready(function() {
   $('label.label.label-link a').prepend('<i class="icon-bookmark icon-white"></i> ');
 
   $('.delete_user_post').on('click', function() {
-   		$(this).fadeOut();
+      $(this).toggleClass('hidden');
+      $(this).siblings().toggleClass('hidden');
+  });
+
+  $('.user_post').on('click', function() {
+      $(this).toggleClass('hidden');
+      $(this).siblings().toggleClass('hidden');
   });
 
 });
