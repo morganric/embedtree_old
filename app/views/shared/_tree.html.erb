@@ -21,15 +21,6 @@
                   <% end %>
             </ul>
 
-            <% if post.tags.any? %>
-              <p>
-                </label> 
-                <% post.tags.each do |tag| %>
-                  <span><%= link_to "##{tag.name}", tagged_url(tag.name)%></span>
-                <% end %>
-              </p>
-            <% end %>
-
              <hr/>
 
             <div class="clearfix">
@@ -41,17 +32,28 @@
                     <% end %>
                 </p>
 
+                <% if post.tags.any? %>
+                  <p>
+                    </label> 
+                    <% post.tags.each do |tag| %>
+                      <span><%= link_to "##{tag.name}", tagged_url(tag.name)%></span>
+                    <% end %>
+                  </p>
+                <% end %>
+
                 <% if current_user %>
                     <hr/>
 
                     <% if can? :manage, @post %>
-                    <%= link_to 'View', post, :class => "btn btn-mini" %>
                     <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
                     <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
                     <% end %>
                     <% if posted(current_user, post) %>
                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
                      :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
+                     <% else %>
+                     <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right delete_user_post" %>
                      <% end %>
                 <% end %>
             </div>
