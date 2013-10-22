@@ -292,6 +292,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   masonry-rails
+  nokogiri
   pg
   querystring
   quiet_assets

@@ -4,6 +4,25 @@ module PostsHelper
 	require 'embedly'
   require 'json'
 
+  require 'nokogiri'
+  require 'open-uri'
+
+  def associate_tags
+    @post_url = @post.url.sub(/^https?\:\/\//, '')
+    @post_url = "http://" + @post_url
+    debugger
+    @doc = Nokogiri::HTML(open(@post_url))
+
+    unless @doc.css('meta[name="keywords"]').to_a == []
+      @post_tags = @doc.css('meta[name="keywords"]')[0]['content'].split(",")
+      
+      @post_tags.each do |tag|
+        @post.tag_list << tag
+      end
+    end
+
+  end
+
   def embedly(url)
 
     embedly_api = Embedly::API.new :key => 'd30e91b2207a40469be014c739c2ddb3', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
@@ -12,10 +31,12 @@ module PostsHelper
     @post.embed_code = obj[0].html
     @post.title = obj[0].title
     @post.description = obj[0].description
-
+    associate_tags
+   
     @type = Type.find_or_create_by_name(obj[0].type)
     @provider = Provider.find_or_create_by_name_and_url(obj[0].provider_name, obj[0].provider_url)
     @author = Author.find_or_create_by_name_and_url(obj[0].author_name, obj[0].author_url)
+
 
   end
 

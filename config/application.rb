@@ -12,7 +12,7 @@ end
 module Embedtree
   class Application < Rails::Application
 
-    # ActsAsTaggableOn.delimiter = ' ' # use space as delimiter
+    # ActsAsTaggableOn.delimiter = ' ' # use space as delimiter   
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
