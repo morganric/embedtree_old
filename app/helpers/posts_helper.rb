@@ -10,7 +10,7 @@ module PostsHelper
   def associate_tags
     @post_url = @post.url.sub(/^https?\:\/\//, '')
     @post_url = "http://" + @post_url
-    debugger
+  
     @doc = Nokogiri::HTML(open(@post_url))
 
     unless @doc.css('meta[name="keywords"]').to_a == []
