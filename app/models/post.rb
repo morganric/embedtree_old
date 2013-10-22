@@ -1,11 +1,11 @@
 class Post < ActiveRecord::Base
 	extend FriendlyId
 
-  attr_accessible :description, :embed_code, :image, :title, :url, :slug, :tag_list
+  attr_accessible :description, :embed_code, :image, 
+  :title, :url, :slug, :tag_list, :category_posts_atributes
 
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_presence_of :url
-
 
   acts_as_taggable_on :tags
 
@@ -22,5 +22,11 @@ class Post < ActiveRecord::Base
 
  has_one :type_post
  has_one :type, through: :type_post
+
+ has_many :category_posts 
+ has_many :categories, :through => :category_posts
+
+accepts_nested_attributes_for :categories
+accepts_nested_attributes_for :category_posts
 
 end

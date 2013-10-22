@@ -1,0 +1,16 @@
+
+<%= link_to 'Edit', edit_category_path(@category), :class => "pull-right" if can? :manage, Category %>
+
+<h1 class="text-center">
+  <%= @category.name %>
+</h1>
+
+<hr />
+
+<div id="masonry-container" class="transitions-enabled centered text-center clearfix masonry">
+
+	<% @category.posts.reverse.each do |post| %>
+		<%= render 'shared/tree', :post => post %>
+	<% end %>
+
+</div>

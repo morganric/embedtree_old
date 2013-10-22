@@ -30,39 +30,49 @@
                     <% if post.type %>
                     <label class="label label-mini label-<%= post.type.name %>"><%= link_to post.type.name.capitalize, type_path(post.type) %></label>
                     <% end %>
+
+                    <% if post.categories.any? %>
+                        <% post.categories.each do |category| %>
+                           <label class="label label-mini label-info">
+                            <i class="icon icon-white icon-tag"></i>
+                            <%= link_to "#{category.name}", category_url(category)%></label>
+                        <% end %>
+                    <% end %>
+
+
                 </p>
 
                 <% if post.tags.any? %>
                   <p>
-                    </label> 
                     <% post.tags.each do |tag| %>
-                      <span><%= link_to "##{tag.name}", tagged_url(tag.name)%></span>
+                      <span><%= link_to "##{tag.name}", tagged_posts_path(:tag => tag.name) %></span>
                     <% end %>
                   </p>
                 <% end %>
 
                 <% if current_user %>
                     <hr/>
-
+                    <span class="pull-left">
                     <% if can? :manage, @post %>
                     <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
                     <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
                     <% end %>
+                    </span>
 
                     <% if posted(current_user, post) %>
-                    <p>
+                    <span class="pull-right">
                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
                      :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
                      <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
                      :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post hidden" %>
-                    </p>
+                    </span>
                      <% else %>
-                     <p>
+                     <span class="pull-right">
                      <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
                      :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post" %>
                      <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
                      :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post hidden" %>
-                   </p>
+                   </span>
                      <% end %>
                 <% end %>
             </div>

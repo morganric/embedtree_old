@@ -1,0 +1,21 @@
+<span id="category_labels">
+	<% @post.categories.each do |category| %>
+	 <label class="label label-mini label-info">
+	  <i class="icon icon-white icon-tag"></i>
+	  <%= link_to "#{category.name}", category_url(category.name.downcase)%>
+	</label>
+	<% end %>
+</span>
+
+
+<p>
+<% if can? :create, CategoryPost %>
+  <%= simple_form_for :category_post, :url => "/category_posts/:category_id/:post_id/:user_id", method: :post, :remote => true do |c| %>
+  <% if (current_user.categories - @post.categories) != [] %>
+    <%= c.collection_select :category_id, (current_user.categories - @post.categories).sort,:id,:name, include_blank: false %>
+    <%= c.input :post_id, :input_html => { :value => @post.id }, as: :hidden  %>
+    <%= c.input :user_id, :input_html => { :value => current_user.id }, as: :hidden  %>
+    <%= c.button :submit, :value => "Add Category", :class => "btn btn-small" %>
+    <% end %>
+  <% end %>
+<% end %>

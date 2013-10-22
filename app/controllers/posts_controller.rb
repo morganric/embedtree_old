@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @categories_post.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -105,11 +106,22 @@ class PostsController < ApplicationController
     end
   end
 
+  # def tagged
+  #   if params[:tag].present? 
+  #     @posts = Post.tagged_with(params[:tag])
+  #     @tag = params[:tag]
+  #   else 
+  #     @posts = Post.all
+  #   end  
+  # end
+
   def tagged
     if params[:tag].present? 
       @posts = Post.tagged_with(params[:tag])
       @tag = params[:tag]
-    else 
+      @tags = Post.tag_counts_on(:tags)
+      render :action => 'tagged'
+     else 
       @posts = Post.all
     end  
   end

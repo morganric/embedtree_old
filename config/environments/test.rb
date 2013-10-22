@@ -38,4 +38,8 @@ Embedtree::Application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
 
+  # added to fix precompile
+  config.assets.compile = false
+  config.serve_static_assets = true
+
 end
