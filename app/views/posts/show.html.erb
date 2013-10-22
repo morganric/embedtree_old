@@ -1,6 +1,4 @@
-
-
-<article class="row">
+  <article class="row">
 
    <section class="span10">
       <h1>
@@ -47,14 +45,7 @@
       </p>
     </section>
 
-    <section>
-      <p>
-      <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
-      <label class="label label-mini label-<%= @post.type.name %>"><%= link_to @post.type.name, type_path(@post.type) %></label>
-    </p>
-    </section>
-
-    <section>
+        <section>
 
         <p>Via
           <% @post.users.limit(3).each do |user| %>
@@ -64,16 +55,31 @@
     </section>
 
     <section>
+      <p>
+      <label class="label label-mini label-success"><%= pluralize(post_count(@post), 'post') %></label>
+      <label class="label label-mini label-<%= @post.type.name %>"><%= link_to @post.type.name, type_path(@post.type) %></label>
+
+      <div id="category_labels">
+        <%= render :partial => "category_posts/category_labels", :post => @post %>
+      </div>
+
+    </p>
+    </section>
+
+    <hr/>
+
+    <section>
       <% if @post.tags.any? %>
       <p>Tags:
           <% @post.tags.each do |tag| %>
-          <span><%= link_to "##{tag.name}", tagged_path(:tag => tag.name) %></span>
+          <span><%= link_to "##{tag.name}", tagged_posts_path(:tag => tag.name) %></span>
         <% end %>
       </p>
-      <hr/>
+
       <% end %>
 
       <% if can? :manage, @post %>
+        <p>Edit Tags:</p>
        <%= simple_form_for(@post) do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
