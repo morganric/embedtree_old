@@ -19,18 +19,25 @@ class Ability
       can :manage, :all
     elsif user.has_role? :user
        user_rights
+    elsif user.has_role? :VIP
+       vip_rights
     end
     visitor_rights
   end
 
-
   def user_rights
     can [:show, :update], User, :id => user.id
     can [:read, :create], Post 
-    can [:read, :update], Profile, :user_id => user.id 
+    can [:read, :update], Profile, :id => user.id 
     can :read, Provider 
     can :read, Author 
     can :read, Type
+    can :read, Category
+  end
+
+  def vip_rights
+    user_rights
+    can [:read, :create], CategoryPost,  :category_user => { :user_id => user.id, :category_id => user.categories }
   end
 
   def visitor_rights

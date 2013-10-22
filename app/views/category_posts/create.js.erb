@@ -1,0 +1,6 @@
+$( document ).ready(function() {
+	console.log('create category post!');
+
+	$('#category_labels').empty().html('<%= escape_javascript(render :partial => "category_labels", :locals => { post: @post} ) %>');
+		<%#=escape_javascript(debugger)%>
+});

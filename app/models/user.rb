@@ -9,15 +9,19 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :slug, :profile_image, :bio, :banner
+  attr_accessible :name, :email, :password, :password_confirmation, 
+  :remember_me, :slug, :profile_image, :bio, :banner
 
-  validates_exclusion_of :name, :in => %w( admin superuser pages partners creators platforms media posts authors types providers tagged ), :message => "You don't belong here"
+  validates_exclusion_of :name, :in => %w( admin superuser pages partners categories creators platforms media posts authors types providers tagged ), :message => "You don't belong here"
 
   mount_uploader :profile_image, AvatarUploader
   
   friendly_id :name, use: :slugged
 
   has_one :profile
+
+ has_many :category_users 
+ has_many :categories, :through => :category_users
 
   has_many :posts, :through => :user_posts
   has_many :user_posts

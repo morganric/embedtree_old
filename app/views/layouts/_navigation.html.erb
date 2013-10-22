@@ -18,8 +18,9 @@
     </li>
 </ul>
 <% end %>
-<div class="nav-collapse collapse">
+<div class="nav-collapse collapse"> 
   <ul class="nav pull-right">
+    <li class="nav-large"><%= link_to 'About', page_path('about') %></li>
     <% if user_signed_in? %>
       <li class="nav-large"><%= link_to 'Creators', authors_path %></li>
       <li class="nav-large"><%= link_to 'Media', types_path %></li>
@@ -61,8 +62,5 @@
       <%= link_to 'Login', new_user_session_path %>
       </li>
     <% end %>
-  </ul>
-  <ul class="nav pull-right">
-    <li class="nav-large"><%= link_to 'About', page_path('about') %></li>
   </ul>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019171447) do
+ActiveRecord::Schema.define(:version => 20131021145842) do
 
   create_table "author_posts", :force => true do |t|
     t.integer  "author_id"
@@ -29,6 +29,32 @@ ActiveRecord::Schema.define(:version => 20131019171447) do
   end
 
   add_index "authors", ["slug"], :name => "index_authors_on_slug", :unique => true
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "category_posts", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "category_posts", ["category_id", "post_id"], :name => "index_category_posts_on_category_id_and_post_id", :unique => true
+
+  create_table "category_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "category_users", ["category_id", "user_id"], :name => "index_category_users_on_category_id_and_user_id", :unique => true
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
