@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'high_voltage'
+gem 'nokogiri'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
