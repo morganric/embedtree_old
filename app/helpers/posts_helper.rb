@@ -14,7 +14,7 @@ module PostsHelper
     @doc = Nokogiri::HTML(open(@post_url))
 
     unless @doc.css('meta[name="keywords"], a[rel="tag"][itemprop="keywords"]').to_a == []
-      @post_tags = @doc.css('*[*="keywords"], a[rel="tag"][itemprop="keywords"]')[0]['content'].split(",")
+      @post_tags = @doc.css('meta[name="keywords"], a[rel="tag"][itemprop="keywords"]')[0]['content'].split(",")
 
       @post_tags.each do |tag|
         @post.tag_list << tag

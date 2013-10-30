@@ -61,8 +61,8 @@
 
                     <% if posted(current_user, post) %>
                     <span class="pull-right">
-                    <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
-                     :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
+                    <%= link_to 'Un-Post', delete_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :delete, :class => "btn btn-mini pull-right delete_user_post" %>
                      <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
                      :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post hidden" %>
                     </span>
@@ -70,8 +70,8 @@
                      <span class="pull-right">
                      <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
                      :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post" %>
-                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
-                     :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post hidden" %>
+                     <%= link_to 'Un-Post', delete_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :delete, :class => "btn btn-mini pull-right delete_user_post hidden" %>
                    </span>
                      <% end %>
                 <% end %>

@@ -29,4 +29,7 @@ class Post < ActiveRecord::Base
 accepts_nested_attributes_for :categories
 accepts_nested_attributes_for :category_posts
 
+paginates_per 5
+# max_paginates_per 100
+
 end

@@ -18,6 +18,7 @@ load_and_authorize_resource
     
     if params[:id] != "tagged" #weak
       @profile = Profile.find(params[:id])
+      @posts = @profile.user.posts.order("created_at DESC").page(params[:page]).per(6)
     end
     
     respond_to do |format|

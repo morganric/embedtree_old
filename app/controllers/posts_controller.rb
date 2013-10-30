@@ -5,10 +5,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC").page(params[:page]).per(6)
+    @cat_posts = []
+
+    CategoryPost.all.each do |cp|
+      @cat_posts << cp.post
+    end
+
+    @cat_posts = @cat_posts.reverse.uniq
+    @cat_posts = Kaminari.paginate_array(@cat_posts).page(params[:page]).per(6)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js # index.js.erb
       format.json { render json: @posts }
     end
   end
@@ -117,12 +126,12 @@ class PostsController < ApplicationController
 
   def tagged
     if params[:tag].present? 
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.tagged_with(params[:tag]).order("created_at DESC").page(params[:page]).per(6)
       @tag = params[:tag]
       @tags = Post.tag_counts_on(:tags)
       render :action => 'tagged'
      else 
-      @posts = Post.all
+      @posts = Post.all.order("created_at DESC").page(params[:page]).per(6)
     end  
   end
 

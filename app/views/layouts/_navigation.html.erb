@@ -21,10 +21,8 @@
 <div class="nav-collapse collapse"> 
   <ul class="nav pull-right">
     <li class="nav-large"><%= link_to 'About', page_path('about') %></li>
+    <li class="nav-large"><%= link_to 'Categories', categories_path %></li>
     <% if user_signed_in? %>
-      <li class="nav-large"><%= link_to 'Creators', authors_path %></li>
-      <li class="nav-large"><%= link_to 'Media', types_path %></li>
-      <li class="nav-large"><%= link_to 'Partners', providers_path %></li>
       <li class="dropdown">
           <a class="dropdown-toggle"
              data-toggle="dropdown"

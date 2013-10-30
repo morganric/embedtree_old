@@ -12,6 +12,8 @@ end
 module Embedtree
   class Application < Rails::Application
 
+    Kaminari::Hooks.init
+
     # ActsAsTaggableOn.delimiter = ' ' # use space as delimiter   
 
     # don't generate RSpec tests for views and helpers

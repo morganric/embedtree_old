@@ -5,8 +5,8 @@
 
 		<ul class="nav nav-pills" id="myTab">
 			<% @types.each do |type| %>
-			  <li class="span2	label-<%= type.name %>">
-			  		<a href="#<%= type.name %>">
+			  <li class="span2 label-<%= type.name %>">
+			  		<a href="#<%= type.name %>" class="top">
 			  			<%= type.name.capitalize.pluralize %>
 			  		</a>
 		  	</li>
@@ -47,6 +47,7 @@
 		color: white;
 	}
 
+
 	#myContent {
 		overflow:hidden;
 	}
@@ -66,10 +67,7 @@
 	  $(this).tab('show');
 	})
 
-	 $('.label-rich a').html('Audio').prepend('<i class="icon-music icon-white"></i> ');
-	 $('.label-video a').prepend('<i class="icon-film icon-white"></i> ');
-	 $('.label-photo a').prepend('<i class="icon-picture icon-white"></i> ');
-	 $('.label-link a').prepend('<i class="icon-bookmark icon-white"></i> ');
+	 $('.label-rich a').html('Audio')
 
 
 </script>

@@ -1,0 +1,81 @@
+<div class="box col3">
+    <div class="thumbnail">
+     <%= link_to image_tag(post.image), post_path(post)  %>
+        <div class="caption">
+            <h5><%= link_to post.title.capitalize, post_path(post) if post.title %></h5>
+            <p> <%= truncate(post.description, :length => 150) %></p>
+
+            <% if post.provider %>
+            <span>On <%= link_to post.provider.name, provider_path(post.provider) if post.provider %></span>
+            <% end %>
+
+            <% if post.author %>
+            <span> By <%= link_to post.author.name, author_path(post.author) if post.author %></span>
+            <% end %>
+            <br/>
+
+            <ul class="post_users plull-left">
+                <span>via</span>
+                  <% post.users.limit(3).each do |user| %>
+                    <li><%= link_to user.name, vanity_url_path(user.profile) %> &nbsp;</li>
+                  <% end %>
+            </ul>
+
+             <hr/>
+
+            <div class="clearfix">
+                <p>
+
+                    <label class="label label-mini label-success"><%= pluralize(post_count(post), 'Post') %></label>
+                    <% if post.type %>
+                    <label class="label label-mini label-<%= post.type.name %>"><%= link_to post.type.name.capitalize, type_path(post.type) %></label>
+                    <% end %>
+
+                    <% if post.categories.any? %>
+                        <% post.categories.each do |category| %>
+                           <label class="label label-mini label-info">
+                            <i class="icon icon-white icon-tag"></i>
+                            <%= link_to "#{category.name}", category_url(category)%></label>
+                        <% end %>
+                    <% end %>
+
+
+                </p>
+
+                <% if post.tags.any? %>
+                  <p>
+                    <% post.tags.each do |tag| %>
+                      <span><%= link_to "##{tag.name}", tagged_posts_path(:tag => tag.name) %></span>
+                    <% end %>
+                  </p>
+                <% end %>
+
+                <% if current_user %>
+                    <hr/>
+                    <span class="pull-left">
+                    <% if can? :manage, @post %>
+                    <%= link_to 'Edit', edit_post_path(post), :class => "btn  btn-mini btn-primary" %>
+                    <%= link_to 'Kill', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %>
+                    <% end %>
+                    </span>
+
+                    <% if posted(current_user, post) %>
+                    <span class="pull-right">
+                    <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post" %>
+                     <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post hidden" %>
+                    </span>
+                     <% else %>
+                     <span class="pull-right">
+                     <%= link_to 'Post', create_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :post, :class => "btn btn-mini btn-success pull-right user_post" %>
+                     <%= link_to 'Delete', delete_user_post_path(current_user.id,post.id),
+                     :remote => true, method: :delete, :class => "btn btn-mini btn-warning pull-right delete_user_post hidden" %>
+                   </span>
+                     <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
