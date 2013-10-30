@@ -19,6 +19,7 @@ end
 
 def show
 	@author = Author.find(params[:id])
+  @posts = @author.posts.order("created_at DESC").page(params[:page]).per(6)
 
 	respond_to do |format|
       format.html # show.html.erb

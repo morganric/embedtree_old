@@ -12,4 +12,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def tag_posts(tag)
+    Post.tagged_with(tag)
+  end
+
 end

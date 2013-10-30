@@ -1,16 +1,31 @@
-
 <%= link_to 'Edit', edit_category_path(@category), :class => "pull-right" if can? :manage, Category %>
+<br/>
 
 <h1 class="text-center">
   <%= @category.name %>
 </h1>
 
+<h3>Edited by: 	
+	<% @category.users.each do |user| %>
+
+		<%= link_to image_tag(user.profile.image.url(:thumb) || "embedtree-logo.png", :width => "35px", :class => "img-circle"), vanity_url_path(user)  %>
+	<% end %>
+</h3>
+
 <hr />
 
 <div id="masonry-container" class="transitions-enabled centered text-center clearfix masonry">
 
-	<% @category.posts.reverse.each do |post| %>
+	<% @posts.each do |post| %>
 		<%= render 'shared/tree', :post => post %>
 	<% end %>
 
 </div>
+
+<%= paginate @posts %>
+
+<script type="text/javascript">
+
+$('#example').tooltip(options);
+
+</script>

@@ -1,6 +1,5 @@
-
-
-
+<h1>Admin Dashboard</h1>
+<hr />
 <ul class="nav nav-tabs" id="myTab">
     <li class="active">
         <a href="#users">Users
@@ -8,6 +7,14 @@
     </li>
     <li class="">
         <a href="#posts">Posts
+        </a>
+    </li>
+    <li class="">
+        <a href="#categories">Categories
+        </a>
+    </li>
+    <li class="">
+        <a href="#tags">Tags
         </a>
     </li>
 </ul>
@@ -54,11 +61,45 @@
 
   <div class="tab-pane" id="posts">
     <h3>Posts</h3>
-    <ul>
-      <% @posts.each do |post| %>
-        <li><% link_to post.title %></li>
+
+      <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Posts</th>
+          <th>Posted Date</th>
+          <th>Categories</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%  @posts.each do |post| %>
+        <tr>
+          <td><%= link_to truncate(post.title, :length => 50), post %></td>
+          <td><%= post_count(post) %></td>
+          <td><%= post.created_at.to_formatted_s(:long_ordinal)  %></td>
+          <td><%= post.categories.count %></td>
+        </tr>
       <% end %>
-    </ul>
+
+      </tbody>
+    </table>
+
+        <%#= paginate @posts, :param_name => :posts_page, :remote => true %>
+
+  </div>
+
+  <div class="tab-pane" id="categories">
+    <%  @categories.each do |category| %>
+      <%= link_to category.name, category %><%= " (#{category.posts.count})" %>
+      <hr/>
+    <% end %>
+
+  </div>
+  <div class="tab-pane" id="tags">
+    <%  @tags.sort_by {|tag| tag_posts(tag).count }.reverse.each do |tag| %>
+      <%= link_to tag.name, tagged_posts_path(:tag => tag.name) %><%= " (#{tag_posts(tag).count})" %>
+      <hr/>
+    <% end %>
 
   </div>
 

@@ -17,25 +17,17 @@
 
   <div id="masonry-container" class="transitions-enabled centered clearfix masonry">
 
-      <% @profile.user.posts.reverse.each do |post| %>
+      <% @posts.each do |post| %>
             <%= render 'shared/tree', :post => post %>
-          <% end %>
-      </div>
+      <% end %>
   </div>
+
+  <%= paginate @posts %>
 
 </div>
 
 <script type="text/javascript">
 
- $('img').load(function(){
-            $('#masonry-container').masonry();
-        });
 
-$(function(){  
-  $('#masonry-container').masonry({
-    itemSelector: '.box',
-    isFitWidth: true
-  });
-});
 
 </script>

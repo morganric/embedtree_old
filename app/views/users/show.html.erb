@@ -20,11 +20,22 @@
 
   <h3>Admin</h3>
 
+  <p>Add Categories for this user to curate here:</p>
+
   <%= simple_form_for :category_user, :url => "/category_users/:category_id/:user_id", method: :post, :remote => true do |c| %>
     <%= c.collection_select :category_id, Category.order(:name),:id,:name, include_blank: false %>
     <%= c.input :user_id, :input_html => { :value => @user.id }, as: :hidden  %>
     <br/>
     <%= c.button :submit, :value => "Add Category", :class => "btn btn-small" %>
+  <% end %>
+
+  <p>Remove user from curating these Categories here:</p>
+
+  <%= simple_form_for :category_user, :url => "/category_users/:category_id/:user_id", method: :delete, :remote => true do |c| %>
+    <%= c.collection_select :category_id, @user.categories.order(:name),:id,:name, include_blank: false %>
+    <%= c.input :user_id, :input_html => { :value => @user.id }, as: :hidden  %>
+    <br/>
+    <%= c.button :submit, :value => "Remove Category", :class => "btn btn-small btn-warning" %>
   <% end %>
 
 

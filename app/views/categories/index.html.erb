@@ -1,10 +1,24 @@
-<h1>Categories</h1>
-
 <br />
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'New Category', new_category_path, :class => "btn btn-mini pull-right" if can? :manage, Category %>
+<br />
 
-<% @categories.each do |category| %>
-   <h2><%= link_to category.name, category %></h2>
-   <%= link_to 'Edit', edit_category_path(category) %>
-   <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<h1>All Categories</h1>
+<hr/>
+
+<div class="row">
+	<% @categories.each do |category| %>
+		<div class="span3">
+	   <h2>
+	   	<%= image_tag(category.posts.first.image, :width => "50px") if category.posts != []  %>
+	   	<%= link_to category.name, category %>
+	   </h2>
+	   
+
+	   <% if can? :manage, Category %>
+	   <br/>
+	   <%= link_to 'Edit', edit_category_path(category) %>
+	   <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+	   <% end %>
+	 </div>
+	<% end %>
+</div>

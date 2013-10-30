@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EmbedTree" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
@@ -35,9 +36,18 @@
       <div id="push"></div>
     </div>
     <footer>
-            <section class="text-center">
-              <p>EmbedTree &copy;</p>
-            </section>
+        <hr/>
+          <section class="text-center">
+            <div class="footer_nav text-center clearfix">
+              <ul class="nav nav-pills">
+                <li class=""><%= link_to 'Creators', authors_path %></li>
+                <li class=""><%= link_to 'Media', types_path %></li>
+                <li class=""><%= link_to 'Partners', providers_path %></li>
+              </ul>
+            </div>
+
+            <div>EmbedTree &copy;</div>
+          </section>
     </footer>
   </body>
 </html>

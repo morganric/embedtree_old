@@ -21,6 +21,7 @@ end
 
 def show
 	@provider = Provider.find(params[:id])
+  @posts = @provider.posts.order("created_at DESC").page(params[:page]).per(6)
 
 	respond_to do |format|
       format.html # show.html.erb

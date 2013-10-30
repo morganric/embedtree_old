@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+    @posts = @category.posts.order("created_at DESC").page(params[:page]).per(6)
 
     respond_to do |format|
       format.html # show.html.erb
