@@ -17,7 +17,7 @@ class CategoryPostsController < ApplicationController
   end
 
   def destroy
-    @category_post = CategoryPost.find(params[:category_post])
+    @category_post = CategoryPost.find_by_category_id_and_post_id(params[:category_post][:category_id], params[:category_post][:post_id])
     @category_post.destroy
 
     respond_to do |format|
