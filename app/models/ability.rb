@@ -41,6 +41,7 @@ class Ability
   end
 
   def visitor_rights
+    can :read, Profile
     can :read, Post
     can :read, Category
     can :read, Provider 
