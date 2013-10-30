@@ -1,6 +1,6 @@
 <div class="">
   <% if @user.profile_image != "" %>
-    <%= image_tag(@user.profile_image.url(:thumb), :class => "img-circle") %>
+    <%= image_tag(@user.profile_image.url(:thumb) || "embedtree-logo.png", :class => "img-circle") %>
   <% end %>
   <h1><%= link_to @user.name, vanity_url_path(@user) %></h1>
   <p>Email: <%= @user.email if current_user.has_role? :admin %></p>
