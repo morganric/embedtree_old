@@ -9,12 +9,10 @@
   <% end %>
 </span>
 
-<hr/>
-
-<p>Edit Categories:</p>
-
 <p>
 <% if can? :create, CategoryPost %>
+<hr/>
+<p>Edit Categories:</p>
   <%= simple_form_for :category_post, :url => "/category_posts/:category_id/:post_id/:user_id", method: :post, :remote => true do |c| %>
     <% if (current_user.categories - @post.categories) != [] %>
       <%= c.collection_select :category_id, (current_user.categories - @post.categories).sort,:id,:name, include_blank: false %>
