@@ -32,4 +32,10 @@ accepts_nested_attributes_for :category_posts
 paginates_per 5
 # max_paginates_per 100
 
+scope :hot,
+	select("posts.id, count(user_posts.id) AS user_posts_count").
+    joins(:user_posts).
+    group("posts.id").
+    order("user_posts_count DESC").
+    uniq
 end

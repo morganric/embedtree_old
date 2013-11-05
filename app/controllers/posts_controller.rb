@@ -6,14 +6,41 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.order("created_at DESC").page(params[:page]).per(6)
-    @cat_posts = []
 
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js # index.js.erb
+      format.json { render json: @posts }
+    end
+  end
+
+  def featured
+
+    @cat_posts = []
     CategoryPost.all.each do |cp|
       @cat_posts << cp.post
     end
-
     @cat_posts = @cat_posts.reverse.uniq
     @cat_posts = Kaminari.paginate_array(@cat_posts).page(params[:page]).per(6)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js # index.js.erb
+      format.json { render json: @posts }
+    end
+  end
+
+    def popular
+
+    @hot = Post.hot
+    @hot_posts = []
+    @hot.each do |hot|
+      @hot_posts << Post.find(hot)
+    end
+    # @hot_posts = @hot_posts.uniq{|x| x.id}
+    # debugger
+    @hot_posts = Kaminari.paginate_array(@hot_posts).page(params[:page]).per(6)
 
     respond_to do |format|
       format.html # index.html.erb

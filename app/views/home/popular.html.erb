@@ -4,20 +4,18 @@
 	<hr/>
 
 
-  <ul class="nav nav-pills">
-    <li class="active"><a href="/">Latest</a></li>
-    <li class=""><a href="featured">Featured</a></li>
-    <li class=""><a href="popular">Popular</a></li>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#featured" data-toggle="tab">Featured</a></li>
   </ul>
 
       <div id="masonry-container" class="transitions-enabled centered infinite-scroll clearfix masonry">
-          <% @posts.each do |post| %>
+          <% @hot_posts.each do |post| %>
             <%= render 'shared/tree', :post => post %>
           <% end %>
       </div>
 
       <div id="paginator">
-        <%= paginate @posts %>
+        <%= paginate @cat_posts %>
       </div>
 
 </div>
