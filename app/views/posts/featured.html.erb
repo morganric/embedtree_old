@@ -3,11 +3,13 @@
 	<h1 class=''>Latest Leaves</h1>
 	<hr/>
 
-  <ul class="nav nav-pills">
-    <li class=""><a href="/">Latest</a></li>
-    <li class="active"><a href="featured">Featured</a></li>
-    <li class=""><a href="popular">Popular</a></li>
-  </ul>
+  <div class="pull-center">
+    <ul class="nav nav-pills">
+      <li class=""><a href="/">All</a></li>
+      <li class="active"><a href="featured">Featured</a></li>
+      <li class=""><a href="popular">Popular</a></li>
+    </ul>
+  </div>
 
       <div id="masonry-container" class="transitions-enabled centered infinite-scroll clearfix masonry">
           <% @cat_posts.each do |post| %>
