@@ -19,6 +19,7 @@
 //= require masonry/jquery.masonry
 //= require masonry/jquery.infinitescroll.min
 //= require rails.validations
+//= require modernizr
 //= require_tree .
 //
 
@@ -37,7 +38,18 @@ $( document ).ready(function() {
 	$(function(){  
 	  $('#masonry-container').masonry({
 	    itemSelector: '.box',
-	    isFitWidth: true
+	    isFitWidth: true,
+      isAnimated: false,
+      transitionDuration: 0,
+      // animationOptions: {
+      //     duration: 50,
+      //     easing: 'linear',
+      //     queue: false
+      //   },
+      // isAnimated: !Modernizr.csstransitions,
+      "isOriginLeft": true,
+      hiddenStyle: { opacity: 0, transform: 'scale(0.001)' },
+      visibleStyle: { opacity: 1, transform: 'scale(1)' }
 
 	  });
 

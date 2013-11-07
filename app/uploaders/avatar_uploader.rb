@@ -42,6 +42,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [300, 300, :north]          
   end
 
+  def default_url
+    "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

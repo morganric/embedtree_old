@@ -35,7 +35,7 @@ body { padding-top: 60px; }
 @import "bootswatch/flatly/bootswatch";
 
 // Whatever application styles you have go last
-/* @import "base"; */
+ /*@import "base"; */
 
 .pull-center {
   margin: 0 auto;
@@ -186,4 +186,31 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+}
+
+/* Animations */
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
 }
