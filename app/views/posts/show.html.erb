@@ -33,7 +33,7 @@
   <side class="span3">
 
     <section>
-      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
+      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" if @post.image %>
       <br/>
       <p>
         <% if @post.provider %>

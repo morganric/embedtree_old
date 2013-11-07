@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   :title, :url, :slug, :tag_list, :category_posts_atributes
 
   validates_format_of :url, :with => URI::regexp(%w(http https))
-  validates_presence_of :url
+  validates_presence_of :url, :image
 
   acts_as_taggable_on :tags
 
