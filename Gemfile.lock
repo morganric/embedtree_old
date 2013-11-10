@@ -170,6 +170,7 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
+    open_uri_redirections (0.1.1)
     orm_adapter (0.4.0)
     pg (0.16.0)
     polyglot (0.3.3)
@@ -299,6 +300,7 @@ DEPENDENCIES
   masonry-rails
   modernizr-rails
   nokogiri
+  open_uri_redirections
   pg
   querystring
   quiet_assets
