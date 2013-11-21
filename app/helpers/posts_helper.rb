@@ -4,16 +4,19 @@ module PostsHelper
 	require 'embedly'
   require 'json'
 
-  require 'nokogiri'
-  require 'open-uri'
-
   def associate_tags
+    
+    require 'nokogiri'
+    require 'open-uri'
+    require 'open_uri_redirections'
+
     @post_url = @post.url.sub(/^https?\:\/\//, '')
     @post_url = "http://" + @post_url
   
-    @doc = Nokogiri::HTML(open(@post_url))
+    @open_url = open(@post_url).read
+    @doc = Nokogiri::HTML(@open_url)
 
-    unless @doc.css('meta[name="keywords"], a[rel="tag"][itemprop="keywords"]').to_a == []
+    unless @doc.css('meta[name="keywords"], a[rel="tag"][itemprop="keywords"]').to_a == [] || @doc == nil
       @post_tags = @doc.css('meta[name="keywords"], a[rel="tag"][itemprop="keywords"]')[0]['content'].split(",")
 
       @post_tags.each do |tag|
