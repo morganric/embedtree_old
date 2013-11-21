@@ -38,7 +38,7 @@
             <li class="divider"></li>
             <% end %>
              <li>
-            <%= link_to "#{current_user.profile.display_name || current_user.name }", vanity_url_path(current_user.profile) %>
+            <%= link_to "#{ current_user.profile.display_name || current_user.name }", vanity_url_path(current_user.profile) %>
             </li>
              <li>
             <%= link_to 'Edit Profile', edit_profile_path(current_user.profile) %>
