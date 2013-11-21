@@ -41,7 +41,12 @@ class Ability
   end
 
   def visitor_rights
+<<<<<<< Updated upstream
     can :read, Post
+=======
+    can :read, Profile
+    can [:read, :popular, :featured],  Post
+>>>>>>> Stashed changes
     can :read, Category
     can :read, Provider 
     can :read, Author 
