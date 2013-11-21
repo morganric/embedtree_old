@@ -35,6 +35,7 @@ gem 'high_voltage'
 gem 'nokogiri'
 gem 'kaminari'
 gem 'modernizr-rails'
+gem 'open_uri_redirections'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
