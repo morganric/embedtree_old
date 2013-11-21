@@ -27,7 +27,7 @@ class Ability
 
   def user_rights
     can [:show, :update], User, :id => user.id
-    can [:read, :create], Post 
+    can [:read, :create, :featured, :popular], Post 
     can [:read, :update], Profile
     can :read, Provider 
     can :read, Author 
