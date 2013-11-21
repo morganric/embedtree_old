@@ -42,7 +42,7 @@ class Ability
 
   def visitor_rights
     can :read, Profile
-    can [:read, :popular, :featured],  Post
+    can :show, Post
     can :read, Category
     can :read, Provider 
     can :read, Author 
