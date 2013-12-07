@@ -1,12 +1,8 @@
-<h1>Facebook Connect</h1>
-
-<%# @profiles.each do |profile| %>
-    <%#= profile.user.name %>
-<%# end %>
-
-<% if current_user %>
+<h1>Connect <% if current_user %>
 <%= current_user.name %>
-<% end %>
+<% end %> to a Facebook Page</h1>
+
+<button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
 
 <div id="fb-root"></div>
     <script>
@@ -19,13 +15,20 @@
         });
 
         // Additional initialization code such as adding Event Listeners goes here
-        FB.ui({
-          method: 'pagetab',
-          redirect_uri: 'http://embedtree.com/facebook'
-        }, function(response){
 
+        $('#facebook-connect').on('click', function(){
+              FB.ui({
+                  method: 'pagetab',
+                  redirect_uri: 'http://embedtree.com/facebook'
+                }, function(response){
 
-        });
+                    console.log(response);
+                    console.log(signed_request);
+
+                });
+
+        })
+
       };
 
       // Load the SDK asynchronously
