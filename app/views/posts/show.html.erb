@@ -16,6 +16,8 @@
   <div id="" class="flex-video widescreen">
         <% if @post.embed_code %>
           <%= @post.embed_code.html_safe %>
+        <% elsif @post.image %>
+          <%= image_tag(@post.image) %>
         <% else %>
           <p class="well" >Sorry, there is no embed code.</p> 
         <% end %>
@@ -49,7 +51,7 @@
   <side class="span3">
 
     <section>
-      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" %>
+      <%= link_to image_tag(@post.image), @post.url, :class => "thumbnail" if @post.image %>
       <br/>
       <p>
         <% if @post.provider %>
