@@ -12,7 +12,7 @@ Embedtree::Application.routes.draw do
   match '/admin', to: 'admin#index', :as => 'admin'
   match '/featured', to: 'posts#featured', :as => 'featured'
   match '/popular', to: 'posts#popular', :as => 'popular'
-  match '/facebook', to: 'facebook#index'
+  match '/facebook', to: 'facebook#index', :as => 'facebook'
 
   delete 'category_posts/:category_id/:post_id/:user_id', to: 'category_posts#destroy',  :as => 'delete_category_post'
   post 'category_posts/:category_id/:post_id/:user_id', to: 'category_posts#create',  :as => 'create_category_post'
