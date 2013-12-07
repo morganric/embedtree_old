@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, 
   :remember_me, :slug, :profile_image, :bio, :banner
 
-  validates_exclusion_of :name, :in => %w( admin new popular featured favicon superuser pages partners categories creators platforms media posts authors types providers tagged ), :message => "You don't belong here"
+  validates_exclusion_of :name, :in => %w( admin facebook new popular featured favicon superuser pages partners categories creators platforms media posts authors types providers tagged ), :message => "You don't belong here"
 
   mount_uploader :profile_image, AvatarUploader
   
