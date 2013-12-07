@@ -4,7 +4,9 @@
     <%#= profile.user.name %>
 <%# end %>
 
+<% if current_user %>
 <%= current_user.name %>
+<% end %>
 
 <script type="text/javascript">
     
