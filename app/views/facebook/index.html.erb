@@ -45,7 +45,7 @@
                         url: '/facebookpage/create',
                         mehod: 'post',
                         data: {'user_id': '<% if current_user %><%= current_user.id %><% end %>', 
-                                'fb_page_id': Object.keys(response.tabs_added)
+                                'fb_page_id': parseInt(Object.keys(response.tabs_added)[0])
                               },
                         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
                     }).success(function(json){
