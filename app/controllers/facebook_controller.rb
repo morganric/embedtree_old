@@ -1,5 +1,7 @@
 class FacebookController < ApplicationController
-    layout "facebook"
+  layout "facebook"
+  before_filter :authenticate_user!, :except => [:show]
+
 
   # GET /profiles
   # GET /profiles.json

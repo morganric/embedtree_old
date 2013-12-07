@@ -1,5 +1,19 @@
-<h1>Listing Profiles For Facebook Connect</h1>
+<h1>Facebook Connect</h1>
 
-<% @profiles.each do |profile| %>
-    <%= profile.user.name %>
-<% end %>
+<%# @profiles.each do |profile| %>
+    <%#= profile.user.name %>
+<%# end %>
+
+<%= current_user.name %>
+
+<script type="text/javascript">
+    
+    FB.ui({
+  method: 'pagetab',
+  redirect_uri: 'http://embedtree.com/facebook'
+}, function(response){
+
+
+});
+
+</script>
