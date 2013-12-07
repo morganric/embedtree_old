@@ -1,10 +1,10 @@
 Embedtree::Application.routes.draw do
 
-  get "facebook_page/new"
+  match "facebook_page/new"
 
-  get "facebook_page/create"
+  match "facebook_page/create"
 
-  get "facebook_page/destroy"
+  match "facebook_page/destroy"
 
   resources :categories
   resources :pages

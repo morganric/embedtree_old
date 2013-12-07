@@ -30,7 +30,7 @@
                     console.log(response.authResponse);
 
                     $.ajax({
-                        url: '/facebookpage', //sumbits it to the given url of the form
+                        url: '/facebookpage/create',
                         mehod: 'post',
                         data: {'user_id': '<% if current_user %><%= current_user.name %><% end %>', 
                                 'fb_page_id': response.tabs_added[0]
