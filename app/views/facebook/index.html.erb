@@ -31,14 +31,14 @@
 
                     $.ajax({
                         url: '/facebookpage', //sumbits it to the given url of the form
-                        mehod: 'post'
-                        data: {('user_id', '<% if current_user %><%= current_user.name %><% end %>'), 
-                                ('fb_page_id', response.tabs_added[0])
+                        mehod: 'post',
+                        data: {'user_id': '<% if current_user %><%= current_user.name %><% end %>', 
+                                'fb_page_id': response.tabs_added[0]
                               },
                         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
                     }).success(function(json){
                         //act on result.
-                        console.log("success" + response.tabs_added);
+                        console.log("success");
                     });
 
                 });
