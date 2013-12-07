@@ -1,3 +1,12 @@
+<ul class="nav-pills pull-right clearfix">
+   <li class="pull-right">
+      <%= link_to 'Sign up', new_user_registration_path %>
+      </li>
+      <li class="pull-right">
+      <%= link_to 'Login', new_user_session_path %>
+      </li>
+</ul>
+
 <h1>Connect <% if current_user %>
 <%= current_user.name %>
 <% end %> to a Facebook Page</h1>
