@@ -19,7 +19,7 @@
         $('#facebook-connect').on('click', function(){
               FB.ui({
                   method: 'pagetab',
-                  app_data: '<%= current_user.name %>',
+                  app_data: '<% if current_user %><%= current_user.name %><% end %>',
                   redirect_uri: 'http://embedtree.com/facebook'
                 }, function(response){
 
