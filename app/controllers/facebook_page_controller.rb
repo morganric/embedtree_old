@@ -4,24 +4,24 @@ class FacebookPageController < ApplicationController
     respond_to do |format|
       format.html #new.html.erb
       format.js
-      format.json { render json: @product}
+      format.json { render json: @facebook_page}
     end
   end
 
   def create
-  	@facebook_page = FacebookPage.new(params[:product])
+  	@facebook_page = FacebookPage.new(params[:user_id, :fb_app_id])
     respond_to do |format|
-      if @product.save
+      if @facebook_page.save
       	format.js
-        format.html { redirect_to @product, notice: "Save process completed!" }
-        format.json { render json: @product, status: :created, location: @product }
+        format.html { redirect_to @facebook_page, notice: "Save process completed!" }
+        format.json { render json: @facebook_page, status: :created, location: @facebook_page }
       else
         format.html { 
           flash.now[:notice]="Save proccess coudn't be completed!" 
           render :new 
         }
         format.js
-        format.json { render json: @product.errors, status: :unprocessable_entity}
+        format.json { render json: @facebook_page.errors, status: :unprocessable_entity}
       end
     end
   end
