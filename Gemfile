@@ -36,7 +36,7 @@ gem 'nokogiri'
 gem 'kaminari'
 gem 'modernizr-rails'
 gem 'open_uri_redirections'
-gem  'rest-graph'
+gem 'rest-graph'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
