@@ -16,6 +16,10 @@
 
 <button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
 
+<h2>SR : <%= @signed_request %></h2>
+
+<h3>PARAMS : <%= params[:signed_request] %></h3>
+
 <div id="fb-root"></div>
     <script>
       window.fbAsyncInit = function() {
@@ -55,6 +59,7 @@
               FB.ui({
                   method: 'pagetab',
                   redirect_uri: 'https://embedtree.heroku.com/facebook/<%= current_user.name %>'
+
                 }, function(response){
 
                     console.log(response);

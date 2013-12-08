@@ -16,13 +16,13 @@ class FacebookController < ApplicationController
     end
 
     def decode_data str
-     encoded_sig, payload = str.split('.')
-     data = ActiveSupport::JSON.decode base64_url_decode(payload)
+       encoded_sig, payload = str.split('.')
+       data = ActiveSupport::JSON.decode base64_url_decode(payload)
     end
 
     if params.has_key? :signed_request
 
-      signed_request = params[:signed_request]
+       signed_request = params[:signed_request]
       @signed_request = decode_data(signed_request)
 
       page = FacebookPage.where(:fb_page_id => @signed_request[:page][:id])
