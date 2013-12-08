@@ -8,17 +8,17 @@ class FacebookController < ApplicationController
   # GET /profiles.json
   def index
     @profiles = Profile.all
-
     if params.has_key? :signed_request
+      debugger
       user_id = FacebookPage.where(:fb_page_id => params[:signed_request][:app_data][:fb_page_id])[:user_id]
 
       redirect_to '/#{user_id}'
     else
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @profiles }
-    end
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @profiles }
+      end
 
     end
   end
