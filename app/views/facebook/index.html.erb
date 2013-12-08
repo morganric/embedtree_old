@@ -14,18 +14,15 @@
 <%= current_user.name %>
 <% end %> to a Facebook Page</h1>
 
-<h1>parserd : <%= @parsed_request %></h1>
+
+<button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
+
+
+<h1>parsed : <%= @parsed_request %></h1>
 
 <h2>singed : <%= @signed %></h2>
 
 <h3>params : <%= params %></h3>
-
-<button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
-
-<h2>SR : <%= @signed_request %></h2>
-
-<h3>PARAMS : <%= params[:signed_request] %></h3>
-
 <div id="fb-root"></div>
     <script>
       window.fbAsyncInit = function() {
