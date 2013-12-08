@@ -20,9 +20,12 @@ class FacebookController < ApplicationController
        data = ActiveSupport::JSON.decode base64_url_decode(payload)
     end
 
+    rg = RestGraph.new( :app_id => "1440239169528450", :secret => "884240b8d9bf9d868a1bd0f0465c90bf")
+    @parsed_request = rg.parse_signed_request!(params["signed_request"])
+
     if params.has_key? :signed_request
 
-       signed_request = params[:signed_request]
+      signed_request = params[:signed_request]
       @signed_request = decode_data(signed_request)
 
       page = FacebookPage.where(:fb_page_id => @signed_request[:page][:id])
