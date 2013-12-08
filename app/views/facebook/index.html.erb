@@ -42,7 +42,7 @@
 
                     $.ajax({
 
-                        url: '/facebook_pages',
+                        url: '/facebook_page',
                         type: 'post', 
                         data: {'user_id': '<% if current_user %><%= current_user.id %><% end %>', 
                                 'fb_page_id': parseInt(Object.keys(response.tabs_added)[0]), 'app_data': parseInt(Object.keys(response.tabs_added)[0])
