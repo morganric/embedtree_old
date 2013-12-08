@@ -1,7 +1,7 @@
 class FacebookController < ApplicationController
   layout "facebook"
   before_filter :authenticate_user!
-  skip_before_filter :authenticate, :only => :show
+  skip_before_filter :authenticate_user!, :only => [:show, :index]
 
 
   # GET /profiles
