@@ -8,8 +8,25 @@ class FacebookController < ApplicationController
   # GET /profiles.json
   def index
     @profiles = Profile.all
+
+    def base64_url_decode str
+     encoded_str = str.gsub('-','+').gsub('_','/')
+     encoded_str += '=' while !(encoded_str.size % 4).zero?
+     Base64.decode64(encoded_str)
+    end
+
+    def decode_data str
+     encoded_sig, payload = str.split('.')
+     data = ActiveSupport::JSON.decode base64_url_decode(payload)
+    end
+
     if params.has_key? :signed_request
-      user_id = FacebookPage.where(:fb_page_id => params[:signed_request][:app_data][:fb_page_id])[:user_id]
+
+      signed_request = params[:signed_request]
+      @signed_request = decode_data(signed_request)
+
+      page = FacebookPage.where(:fb_page_id => @signed_request[:page][:id])
+      user_id = page[:user_id]
 
       redirect_to '/#{user_id}'
     else
