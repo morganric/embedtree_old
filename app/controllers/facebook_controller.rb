@@ -1,7 +1,7 @@
 class FacebookController < ApplicationController
   layout "facebook"
   before_filter :authenticate_user!
-  skip_before_filter :authenticate_user!, :only => :show
+  skip_before_filter :authenticate, :only => :show
 
 
   # GET /profiles
@@ -9,9 +9,17 @@ class FacebookController < ApplicationController
   def index
     @profiles = Profile.all
 
+    if params.has_key? :signed_request
+      user_id = FacebookPage.where(:fb_page_id => params[:signed_request][:app_data][:fb_page_id])[:user_id]
+
+      redirect_to '/#{user_id}'
+    else
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles }
+    end
+
     end
   end
 

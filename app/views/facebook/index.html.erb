@@ -43,10 +43,12 @@
                     $.ajax({
 
                         url: '/facebook_pages',
-                        type: 'post',
+                        type: 'post', 
                         data: {'user_id': '<% if current_user %><%= current_user.id %><% end %>', 
-                                'fb_page_id': parseInt(Object.keys(response.tabs_added)[0])
+                                'fb_page_id': parseInt(Object.keys(response.tabs_added)[0]), 'app_data': parseInt(Object.keys(response.tabs_added)[0])
                               },
+                        app_data: {'fb_page_id': parseInt(Object.keys(response.tabs_added)[0])},
+
                         dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
                     }).success(function(json){
                         //act on result.
