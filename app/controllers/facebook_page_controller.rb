@@ -9,7 +9,7 @@ class FacebookPageController < ApplicationController
   end
 
   def create
-  	@facebook_page = FacebookPage.new(:fb_page_id => params[:fb_page_id])
+  	@facebook_page = FacebookPage.new(:fb_page_id => params[:fb_page_id].to_i)
   	@facebook_page.user_id = current_user.id
 
     respond_to do |format|
