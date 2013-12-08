@@ -34,17 +34,16 @@
               FB.ui({
                   method: 'pagetab',
                   app_data: '<% if current_user %><%= current_user.name %><% end %>',
-                  redirect_uri: 'http://embedtree.com/facebook'
+                  redirect_uri: 'http://embedtree.com/facebook/<%= current_user.name %>'
                 }, function(response){
 
                     console.log(response);
                     console.log(response.tabs_added);
-                    console.log(response.authResponse);
 
                     $.ajax({
-                        url: '/facebookpage/create',
-                        method: 'post',
-                        type: 'get',
+
+                        url: '/facebook_pages',
+                        type: 'post',
                         data: {'user_id': '<% if current_user %><%= current_user.id %><% end %>', 
                                 'fb_page_id': parseInt(Object.keys(response.tabs_added)[0])
                               },
