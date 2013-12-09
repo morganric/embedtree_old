@@ -25,7 +25,7 @@
 <h2>@page_id : <% if @signed_request %><%= @signed_request["page"]["id"] %><% end %></h2>
 <h2>@page : <% if @signed_request %><%= @page %><% end %></h2>
 
-<h2>@page_obj : <% if @signed_request %><%= @page[0] %><% end %></h2>
+<h2>@page_obj : <% if @signed_request %><%= @page[0].user_id %><% end %></h2>
 
 <h3>params : <%= params %></h3>
 <div id="fb-root"></div>
