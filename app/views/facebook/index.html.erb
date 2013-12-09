@@ -22,7 +22,8 @@
 
 <h1>signed : <%= @signed_request %></h1>
 
-<h2>@page : <% if @signed_request %><%= @signed_request["page"]["id"] %><% end %></h2>
+<h2>@page_id : <% if @signed_request %><%= @signed_request["page"]["id"] %><% end %></h2>
+<h2>@page : <% if @signed_request %><%= @page %><% end %></h2>
 
 <h3>params : <%= params %></h3>
 <div id="fb-root"></div>
