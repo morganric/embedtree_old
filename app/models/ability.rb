@@ -47,6 +47,7 @@ class Ability
     can :read, Provider 
     can :read, Author 
     can :read, Type
+    can :read, Facebook
   end
 
 
