@@ -47,9 +47,9 @@ class Ability
     can :read, Provider 
     can :read, Author 
     can :read, Type
-    can :read, Facebook
+    can :read, FacebookPage
   end
-  
+
 
   # def initialize(user)
   #   user ||= User.new # guest user (not logged in)
