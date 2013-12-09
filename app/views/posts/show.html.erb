@@ -31,6 +31,7 @@
     <% else %>
     <% end %>
 
+    <% if current_user %>
      <% if posted(current_user, @post) %>
         <span class="pull-left">
         <%= link_to 'Un-Post', delete_user_post_path(current_user.id, @post.id),
@@ -46,6 +47,7 @@
          :remote => true, method: :delete, :class => "btn btn-mini pull-right delete_user_post hidden" %>
        </span>
      <% end %>
+    <% end %>
 
   </section>
   <side class="span3">
