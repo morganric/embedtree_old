@@ -27,6 +27,7 @@ class FacebookController < ApplicationController
       signed_request = params[:signed_request]
       @signed_request = decode_data(signed_request)
       
+      if @signed_request != []
       @page_id = @signed_request["page"]["id"]
       @page_id = @page_id.to_s
       @page = FacebookPage.where(:fb_page_id => @page_id)
@@ -37,6 +38,7 @@ class FacebookController < ApplicationController
 
 
       redirect_to facebook_url_path(@user)
+      end
 
     else
 
