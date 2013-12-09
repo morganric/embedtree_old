@@ -29,7 +29,7 @@ class FacebookController < ApplicationController
       
       @page_id = @signed_request["page"]["id"]
       @page = FacebookPage.where(:fb_page_id => @page_id)
-      user_id = @page[:user_id]
+      user_id = @page.user_id
       @user_id = user_id
 
       redirect_to '/#{user_id}'
