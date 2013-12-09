@@ -32,10 +32,10 @@ class FacebookController < ApplicationController
       @user_id = @page[0].user_id
       # @user_id = user_id
 
-      @user = User.find(@userid)
+      @user = User.find(@user_id)
 
 
-      redirect_to @user_path
+      redirect_to vanity_url_path(@user)
 
     else
 

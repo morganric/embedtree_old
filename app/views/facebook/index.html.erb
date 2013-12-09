@@ -17,14 +17,8 @@
 
 <button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
 
-<<<<<<< Updated upstream
-=======
+
 <h2>@user : <% if @signed_request %><%= @user %><% end %></h2>
-
-<% if @signed_request %><%= link_to '#{@user.name}', vanity_url(@user.id) %><%end%>
-
-<h3>params : <%= params %></h3>
->>>>>>> Stashed changes
 
 <h1>parsed : <%= @parsed_request %></h1>
 
@@ -35,6 +29,8 @@
 <h2>@page_obj : <% if @signed_request %><%= @page[0].user_id %><% end %></h2>
 
 <h3>params : <%= params %></h3>
+
+<% if @signed_request %><%= link_to '#{@user.name}', vanity_url(@user.id) %><%end%>
 
 
 
