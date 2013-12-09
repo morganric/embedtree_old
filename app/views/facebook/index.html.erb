@@ -18,20 +18,6 @@
 <button id="facebook-connect" class="btn btn-large"><i class="icon icon-fb"></i>Facebook Connect</button>
 
 
-<h2>@user : <% if @signed_request %><%= @user %><% end %></h2>
-
-<h1>parsed : <%= @parsed_request %></h1>
-
-<h1>signed : <%= @signed_request %></h1>
-
-<h2>@page_id : <% if @signed_request %><%= @signed_request["page"]["id"] %><% end %></h2>
-
-<h2>@page_obj : <% if @signed_request %><%= @page[0].user_id %><% end %></h2>
-
-<h3>params : <%= params %></h3>
-
-<% if @signed_request %><%= link_to '#{@user.name}', vanity_url(@user.id) %><%end%>
-
 <hr/>
 
 <% @facebook_pages.each do |page| %>
