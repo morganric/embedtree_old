@@ -32,6 +32,12 @@
 
 <% if @signed_request %><%= link_to '#{@user.name}', vanity_url(@user.id) %><%end%>
 
+<hr/>
+
+<% @facebook_pages.each do |page| %>
+  <%= link_to "#{page.fb_page_id}", "http://www.facebook.com/#{page.fb_page_id}", :targe => "_blank" %>
+<% end %>
+
 
 
 <div id="fb-root"></div>

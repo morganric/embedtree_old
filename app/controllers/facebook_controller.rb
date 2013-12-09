@@ -5,6 +5,7 @@ class FacebookController < ApplicationController
   # GET /profiles.json
   def index
     @profiles = Profile.all
+    @facebook_pages = FacebookPage.all
 
     def base64_url_decode str
      encoded_str = str.gsub('-','+').gsub('_','/')
@@ -35,7 +36,7 @@ class FacebookController < ApplicationController
       @user = User.find(@user_id)
 
 
-      redirect_to vanity_url_path(@user)
+      redirect_to facebook_url_path(@user)
 
     else
 
