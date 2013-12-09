@@ -24,7 +24,7 @@
 
 <h2>@page_id : <% if @signed_request %><%= @signed_request["page"]["id"] %><% end %></h2>
 
-<h2>@page_obj : <% if @signed_request %><%= FacebookPage.where(:fb_page_id => @page_id) %><% end %></h2>
+<h2>@page_obj : <% if @signed_request %><%=  %><% end %></h2>
 
 <h3>params : <%= params %></h3>
 <div id="fb-root"></div>
