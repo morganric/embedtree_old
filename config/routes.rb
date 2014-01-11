@@ -1,7 +1,6 @@
 Embedtree::Application.routes.draw do
 
-
-
+  match '/oembed', to: 'oembed#index', :as => 'oembed'
   resources :facebook_page
 
   resources :categories
