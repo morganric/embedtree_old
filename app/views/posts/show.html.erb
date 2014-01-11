@@ -1,4 +1,26 @@
 <% content_for :head do %>
+
+  <meta name="twitter:card" content="player">
+<meta name="twitter:site" content="@embedtree">
+<meta name="twitter:creator" content="@embedtree">
+<meta name="twitter:title" content="<%= @post.title %>">
+<meta name="twitter:description" content="<%= @post.description %>">
+<meta name="twitter:image:src" content="<%= @post.image %>">
+<meta name="twitter:player" content="<%= @post.embed_code.gsub(/["]/, "'").html_safe %>">
+<meta name="twitter:player:height" content="300">
+<meta name="twitter:player:width" content="300 ">
+<meta name="twitter:domain" content="www.embedtree.com">
+<meta name="twitter:app:name:iphone" content="embedtree">
+<meta name="twitter:app:name:ipad" content="embedtree">
+<meta name="twitter:app:name:googleplay" content="embedtree">
+<meta name="twitter:app:url:iphone" content="embedtree">
+<meta name="twitter:app:url:ipad" content="embedtree">
+<meta name="twitter:app:url:googleplay" content="embedtree">
+<meta name="twitter:app:id:iphone" content="embedtree">
+<meta name="twitter:app:id:ipad" content="embedtree">
+<meta name="twitter:app:id:googleplay" content="embedtree">
+
+
   <link rel="alternate" type="application/json+oembed"
   href="/oembed?url=<%= post_path(@post) %>&format=json"
   title="#{@post.title}" />
