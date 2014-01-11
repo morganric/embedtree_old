@@ -2,6 +2,7 @@
 {
   "type": "<%= @post.type.name %>",
   "version": 1.0,
+  "url": "<%= post_url(@post) %>",
   "thumbnail_url": "<%= @post.image %>",
   "html": "<%=h @post.embed_code.gsub(/["]/, "'").html_safe %>"
 }
