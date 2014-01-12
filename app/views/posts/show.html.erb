@@ -20,6 +20,18 @@
 <meta name="twitter:app:id:ipad" content="embedtree">
 <meta name="twitter:app:id:googleplay" content="embedtree">
 
+<meta property="og:site_name" content="EmbedTree" />
+<meta property="og:url" content="<%= post_url(@post) %>" />
+<meta property="og:title" content="<%= @post.title %>" />
+<meta property="og:type" content="<%= @post.type %>" />
+<meta property="og:image" content="<%= @post.image %>" />
+<meta property="og:description" content="<%= @post.description %>" />
+<meta property="og:video" content="<%= @post.embed_code.gsub(/["]/, "'").html_safe %>" />
+<!-- <meta property="og:video:type" content="application/x-shockwave-flash" />
+<meta property="og:video:width" content="1280" />
+<meta property="og:video:height" content="720" />
+<meta property="fb:app_id" content="87741124305" /> -->
+
 
   <link rel="alternate" type="application/json+oembed"
   href="/oembed?url=<%= post_path(@post) %>&format=json"
