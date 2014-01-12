@@ -23,6 +23,8 @@ Embedtree::Application.routes.draw do
     end
   end
 
+  match '/posts/:post_id/embed', to: 'embed#show', :as => 'embed' 
+
   delete 'user_posts/:user_id/:post_id', to: 'user_posts#destroy',  :as => 'delete_user_post'
   post 'user_posts/:user_id/:post_id', to: 'user_posts#create',  :as => 'create_user_post'
 
