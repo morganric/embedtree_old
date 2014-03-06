@@ -52,6 +52,9 @@ class FacebookController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+      @params = params
+     signed_request = params[:signed_request] 
+      @signed_request = decode_data(signed_request)
     
     if params[:id] != "tagged" #weak
       @profile = Profile.find(params[:id])

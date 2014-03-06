@@ -6,6 +6,9 @@
 
   <p class="well">
     <%= @profile.bio %>
+    <%= @params %>
+    <%= @signed_request %>
+
   </p>
 
 <% if can? :edit, @profile %>
